@@ -1,6 +1,8 @@
 {
  "app": {
-  "name": "Pocket Po"
+  "name": "Pocket Po",
+  "error": "That screen didn't load.",
+  "errorHome": "Back to Home"
  },
  "nav": {
   "home": "Home",
@@ -98,7 +100,10 @@
   "highContrast": "High contrast",
   "autoStart": "Auto-start top Now card",
   "handoffMessage": "Handoff message",
-  "comfort": "Shorter exhale, just go at your pace"
+  "comfort": "Shorter exhale, just go at your pace",
+  "sizeSmall": "Small",
+  "sizeMedium": "Medium",
+  "sizeLarge": "Large"
  },
  "safety": {
   "cold": "Cold on the face can slow your heart rate. Skip it if you have a heart condition, take medication that affects heart rate, tend to faint, or have a skin condition on your face. Use cool water or a wrapped ice pack, never ice directly on skin, never hold your breath or submerge your head. If unsure, check with your GP. Stop if you feel dizzy or unwell.",
@@ -129,7 +134,7 @@
   "done": "Done",
   "s1": {
    "title": "Your Now cards",
-   "intro": "If you like, pick up to three for the Now screen. You choose once, while you feel steady, so Now never needs a decision.",
+   "intro": "If you like, pick up to three for the Now screen. You choose once, at a time that suits you, so Now never needs a decision.",
    "limit": "Three chosen. Untick one to swap."
   },
   "s2": {
@@ -403,5 +408,12 @@
    "settings": "settings",
    "poState": "Po items"
   }
+ },
+ "a11y": {
+  "po": "Po, an orange cat",
+  "favourite": "Favourite {name}",
+  "bubble": "Bubble",
+  "kaleido": "Kaleidoscope",
+  "scaleN": "{n} of 5"
  }
 }

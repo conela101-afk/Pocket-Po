@@ -17,6 +17,7 @@ function renderNav(active) {
   // Now button floats everywhere except Now itself and inside a running tool.
   document.body.toggleAttribute('data-hide-fab', active === 'now' || active === 'tool');
   document.getElementById('now-fab').textContent = t('nav.now');
+  document.getElementById('fab-wrap').setAttribute('aria-label', t('nav.now'));
 }
 
 async function main() {
@@ -42,6 +43,14 @@ async function main() {
     renderNav(['settings', 'safety', 'setup', 'tags', 'export'].includes(name) ? 'more' : name);
     document.body.toggleAttribute('data-hide-fab', ['now', 'tool', 'setup'].includes(name));
     scrollTo(0, 0);
+  }, () => {
+    // After each screen: a page title for screen readers, and focus moves to the new content.
+    const v = document.getElementById('view');
+    document.title = `${v.querySelector('h1')?.textContent.trim() || t('app.name')} – ${t('app.name')}`;
+    v.focus({ preventScroll: true });
+  }, () => {
+    // A screen that fails to draw never leaves a blank page: one calm line and a way home.
+    document.getElementById('view').innerHTML = `<p>${t('app.error')}</p><a class="btn primary" href="#/home">${t('app.errorHome')}</a>`;
   });
   if (!getSetting('persistAsked')) { setSetting('persistAsked', true); requestPersistence(); }
   if ('serviceWorker' in navigator) navigator.serviceWorker.register('service-worker.js').catch(() => {});

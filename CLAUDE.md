@@ -43,12 +43,14 @@ The main risk is that the app itself becomes a demand. Prescribed coping tools o
 /manifest.webmanifest
 /service-worker.js
 /css/            app.css, po.css, themes.css
-/js/             app.js, router.js, db.js, po.js, tools/*.js, export.js, settings.js
-/data/           tools.json, tags.json, copy.json
+/js/             app.js, router.js, db.js, po.js, data.js, settings.js, screens.js, setup.js, tags.js,
+                 scene.js, handoff.js, classify.js, export.js, export-stats.js, tools/*.js
+/data/           tools.json, tags.json, copy.json, defaults.json
 /assets/po/      po-sheet.png (+ po-sheet.json frame map)
 /assets/icons/
-/tools-dev/      generate_po.py (spritesheet generator, dev only)
-/SPEC.md  /CLAUDE.md  /DECISIONS.md  /CHANGELOG.md
+/tools-dev/      generate_po.py, generate_icons.py (dev only)
+/scripts/        check.mjs, contrast.mjs, test-export.mjs, copy-review.mjs (checks and tooling)
+/SPEC.md  /CLAUDE.md  /DECISIONS.md  /CHANGELOG.md  /README.md  /TESTING.md  /COPY-REVIEW.md  /LICENSE
 ```
 
 All user-facing wording lives in `data/copy.json` and `data/tools.json` so it can be edited without touching code.

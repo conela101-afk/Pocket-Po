@@ -1,4 +1,6 @@
 // Po: CSS steps() animation over the spritesheet. Frame map comes from assets/po/po-sheet.json.
+import { t } from './data.js';
+
 let map = null;
 
 export async function loadPo() {
@@ -28,6 +30,6 @@ export function setPo(el, state, opts = {}) {
 export function poHTML(state = 'sit', size = '') {
   const s = map?.states[state] || map?.states.sit;
   const once = ONCE.has(state);
-  return `<div class="po ${size} ${once ? 'once' : ''}" data-state="${state}" role="img" aria-label="Po, an orange cat"
+  return `<div class="po ${size} ${once ? 'once' : ''}" data-state="${state}" role="img" aria-label="${t('a11y.po')}"
     style="--row:${s.row};--n:${s.frames};--rest:${once ? s.frames - 1 : 0};--dur:${SLOW[state] ?? 2}s"><div class="po-sprite"></div></div>`;
 }

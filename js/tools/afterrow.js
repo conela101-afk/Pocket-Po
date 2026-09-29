@@ -17,7 +17,7 @@ export function scaleHTML(selected = null) {
     return `<path class="fillc" d="M16 16 L16 4 A12 12 0 ${n > 2.5 ? 1 : 0} 1 ${x.toFixed(2)} ${y.toFixed(2)} Z"/>`;
   };
   return `<div class="scale" role="group" aria-label="${esc(t('after.scale'))}">
-    ${[1, 2, 3, 4, 5].map((n) => `<button data-n="${n}" class="s${n}" aria-pressed="${selected === n}" aria-label="${n} of 5">
+    ${[1, 2, 3, 4, 5].map((n) => `<button data-n="${n}" class="s${n}" aria-pressed="${selected === n}" aria-label="${esc(t('a11y.scaleN').replace('{n}', n))}">
       <svg viewBox="0 0 32 32" aria-hidden="true"><circle cx="16" cy="16" r="12" class="ring"/>${pie(n)}</svg><span aria-hidden="true">${n}</span></button>`).join('')}
     </div><div class="scale-ends muted" aria-hidden="true"><span>${esc(t('after.lo'))}</span><span>${esc(t('after.hi'))}</span></div>`;
 }

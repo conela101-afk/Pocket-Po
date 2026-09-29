@@ -2,12 +2,13 @@
 <html lang="en-IE">
 <head>
 <meta charset="utf-8">
+<meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self'; style-src 'self' 'unsafe-inline'; img-src 'self' data: blob:; font-src 'self'; connect-src 'self'; media-src 'self'; manifest-src 'self'; worker-src 'self'; object-src 'none'; base-uri 'none'; form-action 'none'">
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
 <title>Pocket Po</title>
 <meta name="theme-color" content="#2e3440">
 <link rel="manifest" href="manifest.webmanifest">
 <link rel="icon" href="assets/icons/icon-192.png">
-<link rel="apple-touch-icon" href="assets/icons/icon-192.png">
+<link rel="apple-touch-icon" sizes="180x180" href="assets/icons/icon-180.png">
 <meta name="apple-mobile-web-app-capable" content="yes">
 <meta name="mobile-web-app-capable" content="yes">
 <meta name="apple-mobile-web-app-title" content="Pocket Po">
@@ -17,7 +18,7 @@
 </head>
 <body>
 <main id="view" tabindex="-1"></main>
-<a id="now-fab" class="fab" href="#/now" aria-label="Now">Now</a>
+<aside id="fab-wrap"><a id="now-fab" class="fab" href="#/now">Now</a></aside>
 <nav id="nav" aria-label="Main"></nav>
 <noscript><p style="padding:1rem">Pocket Po needs JavaScript to run.</p></noscript>
 <script type="module" src="js/app.js"></script>

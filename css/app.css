@@ -1,5 +1,6 @@
 [hidden] { display: none !important; }
 * { box-sizing: border-box; }
+a { color: var(--text); }
 html { font-size: 100%; -webkit-text-size-adjust: 100%; }
 html[data-textsize="large"] { font-size: 118%; }
 html[data-textsize="small"] { font-size: 92%; }
@@ -49,9 +50,9 @@ body[data-hide-fab] .fab { display: none; }
 .row { display: flex; align-items: center; gap: .5rem; }
 .row > .grow { flex: 1; }
 .star[aria-pressed="true"] { color: var(--accent); }
-input[type="search"], input[type="text"], select, textarea {
+input[type="search"], input[type="text"], input[type="date"], select, textarea {
   width: 100%; min-height: 56px; font: inherit; color: var(--text); background: var(--surface);
-  border: 1px solid var(--border); border-radius: 12px; padding: .5rem .75rem;
+  border: 2px solid var(--field); border-radius: 12px; padding: .5rem .75rem;
 }
 label.setting { display: flex; align-items: center; justify-content: space-between; min-height: 56px; gap: 1rem; }
 label.setting input[type="checkbox"] { width: 28px; height: 28px; }
@@ -87,11 +88,11 @@ html[data-motion="reduce"] *, html[data-motion="reduce"] *::before, html[data-mo
 
 /* Guided, lists and play */
 .tick { width: 100%; justify-content: flex-start; text-align: left; }
-.tick .box { width: 26px; height: 26px; border: 2px solid var(--muted); border-radius: 6px; flex: none; display: inline-block; }
+.tick .box { width: 26px; height: 26px; border: 2px solid var(--field); border-radius: 6px; flex: none; display: inline-block; }
 .tick[aria-pressed="true"] .box { background: var(--accent); border-color: var(--accent); position: relative; }
 .tick[aria-pressed="true"] .box::after { content: "✓"; color: var(--accent-text); position: absolute; inset: 0; text-align: center; line-height: 22px; font-weight: 700; }
 .pulse { display: flex; justify-content: space-between; max-width: 16rem; margin: 1rem auto; }
-.pulse .dot { width: 56px; height: 56px; border-radius: 50%; border: 3px solid var(--muted); }
+.pulse .dot { width: 56px; height: 56px; border-radius: 50%; border: 3px solid var(--field); }
 .pulse .dot.on { background: var(--accent); border-color: var(--accent); }
 .item { display: flex; align-items: center; gap: .5rem; padding: .5rem .75rem; background: var(--surface); border: 1px solid var(--border); border-radius: 12px; }
 .item > span { flex: 1; white-space: pre-wrap; overflow-wrap: anywhere; }

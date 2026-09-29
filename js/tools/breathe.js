@@ -86,6 +86,7 @@ export function runBreathing(view, tool, mode, opener) {
     const startedAt = Date.now();
     const C = 2 * Math.PI * 114;
     view.innerHTML = `
+      <h1 class="sr-only">${esc(tool.name)}</h1>
       <div class="pacer">
         <svg class="ring" viewBox="0 0 240 240" aria-hidden="true"><circle class="track" cx="120" cy="120" r="114"/>
           <circle class="fill" cx="120" cy="120" r="114" stroke-dasharray="${C}" stroke-dashoffset="${C}"/></svg>

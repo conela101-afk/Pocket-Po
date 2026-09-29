@@ -18,7 +18,7 @@ export function runBubbles(view, tool, mode, opener) {
         if (isEnded() || pf.children.length >= 6) return;
         const b = document.createElement('button');
         const size = rnd(60, 88);
-        b.className = 'bubble'; b.setAttribute('aria-label', 'Bubble');
+        b.className = 'bubble'; b.setAttribute('aria-label', t('a11y.bubble'));
         b.style.cssText = `width:${size}px;height:${size}px;left:${rnd(2, 78)}%;` + (reduced() ? `top:${rnd(5, 70)}%;` : '');
         b.onclick = () => { if (getSetting('vibration') && navigator.vibrate) navigator.vibrate(6); b.remove(); };
         pf.append(b);
@@ -58,7 +58,7 @@ const PALETTES = [['#c9762f', '#e0b070', '#7a5c3a'], ['#4f7f96', '#9cc3d5', '#33
 export function runKaleidoscope(view, tool, mode, opener) {
   runSession(view, tool, mode, opener, {
     dur: SOFT_END_SEC, poSize: 'sm', hint: t('play.kaleido'),
-    stage: '<svg id="k" class="kaleido" viewBox="0 0 300 300" role="img" aria-label="Kaleidoscope"></svg>',
+    stage: `<svg id="k" class="kaleido" viewBox="0 0 300 300" role="img" aria-label="${t('a11y.kaleido')}"></svg>`,
     mount({ stage, isEnded }) {
       const svg = stage.querySelector('#k');
       const make = () => {

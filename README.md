@@ -29,6 +29,8 @@ Pocket Po is a web app. Once it has loaded, it works with no connection.
 
 Open it once with a connection first, so it can save itself for offline use. After that, a long-press on the home screen icon offers a **Now** shortcut on most Android phones.
 
+Po's corner on Home gains a few small items the more you use the app. They are only decoration, they never go away, and nothing announces them.
+
 ## Your data stays on your device
 
 - Everything you do in the app is stored only on your phone.
@@ -58,7 +60,7 @@ npm run serve   # local server at http://localhost:8080
 npm run check   # consistency and safety checks
 ```
 
-Read `SPEC.md` for the build spec and `CLAUDE.md` for the design rules. Decisions are recorded in `DECISIONS.md`.
+Read `SPEC.md` for the build spec and `CLAUDE.md` for the design rules. Decisions are recorded in `DECISIONS.md`. `TESTING.md` lists what to try on a real phone, and `COPY-REVIEW.md` (built by `npm run copy`) holds every word the user reads.
 
 Please don't add personal data to this repository, including in issues, screenshots or test data. Use obviously fake data.
 

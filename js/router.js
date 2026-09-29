@@ -10,12 +10,13 @@ export function parse() {
 
 export function go(path) { location.hash = path; }
 
-export function start(onChange) {
+export function start(onChange, afterRender, onError) {
   const render = async () => {
     const { name, args } = parse();
     const fn = routes.get(name) || routes.get('home');
     onChange(routes.has(name) ? name : 'home');
-    await fn(...args);
+    try { await fn(...args); } catch { onError?.(); }
+    afterRender?.(name);
   };
   addEventListener('hashchange', render);
   return render();

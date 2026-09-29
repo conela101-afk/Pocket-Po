@@ -1,7 +1,8 @@
 import { t, tools, categories, getTool, getDefaults } from './data.js';
 import { getSetting, setSetting } from './settings.js';
 import { timeBlock, getAll } from './db.js';
-import { poHTML } from './po.js';
+import { poHTML, setPo } from './po.js';
+import { sceneHTML, cumulativeCount } from './scene.js';
 import { doHandoff, handoffMessage } from './handoff.js';
 import { runTool } from './tools/run.js';
 import { go } from './router.js';
@@ -20,11 +21,17 @@ export async function home() {
   const block = timeBlock();
   const offers = (getDefaults().homeRotation[block] || []).slice(0, 3);
   const plans = (await getAll('contingencies').catch(() => [])).filter((p) => !p.archived);
-  view().innerHTML = `
-    ${poHTML(block === 'night' ? 'sleep' : 'sit')}
+  const count = await cumulativeCount();
+  // Po does something quiet while nobody is asking anything of it.
+  const mood = block === 'night' ? 'sleep' : ['idle-loaf', 'wash', 'watch-bird', 'sit', 'stretch'][Math.floor(Math.random() * 5)];
+  view().innerHTML = `<h1 class="sr-only">${esc(t('nav.home'))}</h1>
+    ${sceneHTML(poHTML(mood), count)}
     <p class="center muted">${esc(t('home.offer'))}</p>
     <div class="stack">${offers.map((id) => toolRow(id, 'poSuggestion')).join('')}</div>
     ${plans.length ? `<h2>${esc(t('home.plans'))}</h2><div class="stack"><a class="card" href="#/tool/contingency-builder/browse">${esc(t('home.plans'))}</a></div>` : ''}`;
+  // Po only reacts when touched.
+  const po = view().querySelector('.po');
+  po.addEventListener('click', () => { setPo(po, 'purr'); setTimeout(() => po.isConnected && setPo(po, mood), 2500); });
 }
 
 const nowCard = (id) => {
@@ -36,6 +43,7 @@ export function now() {
   const ids = getSetting('nowDefaults') || getDefaults().defaults.now;
   const cards = ids.filter((id) => getDefaults().nowCards[id]).slice(0, 3).map(nowCard);
   view().innerHTML = `
+    <h1 class="sr-only">${esc(t('nav.now'))}</h1>
     ${poHTML('sit')}
     <div class="stack">${cards.join('')}${getSetting('quiet') ? nowCard('quiet') : ''}</div>
     <div class="stack" style="margin-top:1rem"><button id="handoff" title="${esc(handoffMessage())}">${esc(t('now.handoff'))}: ${esc(handoffMessage())}</button></div>
@@ -62,7 +70,7 @@ export function library() {
   const favs = getSetting('favourites');
   const recent = getSetting('recent');
   const row = (x) => `<li class="row"><a class="card grow" href="#/tool/${x.id}/browse" data-name="${esc(x.name.toLowerCase())}">${esc(x.name)}</a>
-    <button class="star" data-id="${x.id}" aria-pressed="${favs.includes(x.id)}" aria-label="Favourite ${esc(x.name)}">★</button></li>`;
+    <button class="star" data-id="${x.id}" aria-pressed="${favs.includes(x.id)}" aria-label="${esc(t('a11y.favourite').replace('{name}', x.name))}">★</button></li>`;
   const section = (title, ids) => ids.length ? `<h2>${esc(title)}</h2><ul class="list">${ids.map(getTool).filter(Boolean).map(row).join('')}</ul>` : '';
   const byCat = categories().map((c) => section(c.name, tools().filter((x) => x.category === c.id && x.modes.includes('library')).map((x) => x.id))).join('');
   view().innerHTML = `<h1>${esc(t('nav.library'))}</h1>
@@ -92,7 +100,7 @@ export function more() {
 export function safety() {
   view().innerHTML = `<h1>${esc(t('more.items.safety'))}</h1>
     <h2>Cold tools</h2><div class="notice">${esc(t('safety.cold'))}</div>${crisis()}
-    <p><a href="#/more">${esc(t('now.back'))}</a></p>`;
+    <p><a class="btn" href="#/more">${esc(t('now.back'))}</a></p>`;
 }
 
 export function settings() {
@@ -102,10 +110,10 @@ export function settings() {
     ${cb('reduceMotion', t('settings.reduceMotion'))}${cb('sound', t('settings.sound'))}${cb('vibration', t('settings.vibration'))}
     ${cb('highContrast', t('settings.highContrast'))}${cb('autoStart', t('settings.autoStart'))}${cb('comfortExhale', t('settings.comfort'))}${cb('afterRow', t('settings.afterRow'))}${cb('bodyTags', t('settings.bodyTags'))}
     ${sel('theme', t('settings.dark'), [['auto', t('settings.darkAuto')], ['dark', t('settings.darkOn')], ['light', t('settings.darkOff')]])}
-    ${sel('textSize', t('settings.textSize'), [['small', 'Small'], ['medium', 'Medium'], ['large', 'Large']])}
+    ${sel('textSize', t('settings.textSize'), [['small', t('settings.sizeSmall')], ['medium', t('settings.sizeMedium')], ['large', t('settings.sizeLarge')]])}
     <label class="setting" style="align-items:flex-start;flex-direction:column"><span>${esc(t('settings.handoffMessage'))}</span>
       <input type="text" id="hm" value="${esc(handoffMessage())}"></label>
-    <p><a href="#/more">${esc(t('now.back'))}</a></p>`;
+    <p><a class="btn" href="#/more">${esc(t('now.back'))}</a></p>`;
   view().querySelectorAll('[data-k]').forEach((el) => el.onchange = () =>
     setSetting(el.dataset.k, el.type === 'checkbox' ? el.checked : el.value));
   document.getElementById('hm').onchange = (e) => setSetting('handoffMessage', e.target.value.trim() || null);

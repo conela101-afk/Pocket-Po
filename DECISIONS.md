@@ -91,3 +91,20 @@ Approved by the owner. These replace the earlier defaults where they differ.
 - **Round trip tested:** export a backup, wipe every store and the settings, restore, then compare. All 9 stores and the settings came back identical (400 synthetic sessions), and new sessions afterwards get fresh ids.
 - **Tests in `npm run check`:** `scripts/test-export.mjs` checks the calculations with fake data, including days with no use, a clock-change case, the early-exit rules, CSV quoting and backup validation.
 - **Files are named** `pocket-po-sessions-DATE.csv` and `pocket-po-backup-DATE.json`, both already covered by `.gitignore`.
+
+## Milestone 7
+- **Po's corner (unlocks):** six cosmetic items on Home, unlocked by cumulative sessions: cushion 25, scarf 75, window perch 150, plant 300, blanket 500, fish bowl 800 (the spec gave the first four numbers; the last two continue the pattern). They are permanent: the count only rises, and deleting sessions never removes an item. Quick looks ("opened") do not count. Nothing announces an unlock, there is no badge and no toast. The art is drawn in the repo (`js/scene.js`), so it is original. Backups include the count.
+- **Home:** Po does something quiet (loaf, wash, watch a bird, sit, stretch, or sleep at night) and only reacts, by purring for a moment, when touched.
+- **Accessibility pass:** every screen has a heading (hidden where the screen has no visible one), the page title and focus follow each screen for screen readers, guided steps are read out politely, and the floating Now button sits in a labelled landmark. Two "Back" text links were too small and used the browser's default blue; they are now proper buttons. axe-core found nothing on 15 screens plus all 47 tools in light, dark and high-contrast, and no touch target is under 56px.
+- **Contrast:** the palettes now pass WCAG AA in all four themes, tested on every run of `npm run check`. Several values were just short (quiet text, text on the main buttons, accent graphics, input edges) and were darkened. The dark high-contrast theme was not working at all because of a malformed rule; that is fixed.
+- **Security policy:** `index.html` now carries a Content-Security-Policy that limits scripts, styles, images, data connections, frames and forms to the app itself. That turns "no network calls, no third-party scripts" from a promise into something the browser enforces.
+- **Screens that fail to draw** show one calm line and a button home, never a blank page.
+- **Stricter checks:** app size under 2 MB (it is about 0.4 MB), no runtime dependencies, manifest and icon sizes, British spelling, no exclamation marks, no emoji in tool instructions, banned phrases inside code as well as data, and no hard-coded labels. Each new rule was tested by breaking a copy of the repo on purpose.
+- **Speed:** cold launch straight into Now took 40 ms on a desktop browser, 129 ms with the CPU slowed 4 times and 205 ms at 6 times, against the 300 ms target. This is an emulation, not a real phone.
+- **Updates:** tested that a new version downloads quietly while a tool is running, waits, changes nothing on screen, and takes over only after the app has been closed and opened again.
+- **Copy:** `COPY-REVIEW.md` holds every word the user reads, for the owner's final edit. One line that assumed a state ("while you feel steady") was reworded.
+- **Real-device testing** cannot be done from here. `TESTING.md` lists what to try, in plain steps.
+- **No database change,** so no migration was needed.
+
+- Proposed: make the phone numbers in the crisis footer tappable (call links), leaving the wording exactly as specified.
+- Proposed: a short "what's new" note somewhere in More, off by default, if updates ever need explaining.

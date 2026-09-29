@@ -34,6 +34,6 @@ def cat(size, pad):
     return out
 
 
-for name, size, pad in [("icon-192.png", 192, 20), ("icon-512.png", 512, 52),
+for name, size, pad in [("icon-180.png", 180, 19), ("icon-192.png", 192, 20), ("icon-512.png", 512, 52),
                         ("icon-maskable-512.png", 512, 130)]:
     cat(size, pad).save(f"assets/icons/{name}")

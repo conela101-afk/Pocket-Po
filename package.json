@@ -4,7 +4,8 @@
   "version": "0.1.0",
   "type": "module",
   "scripts": {
-    "check": "node scripts/check.mjs && node scripts/test-export.mjs",
+    "check": "node scripts/check.mjs && node scripts/contrast.mjs && node scripts/test-export.mjs",
+    "copy": "node scripts/copy-review.mjs",
     "serve": "python3 -m http.server 8080"
   }
 }

@@ -145,7 +145,10 @@ for (const [g, label] of [['trigger', 'Trigger'], ['context', 'Context']]) {
 // Time blocks in SPEC §7 exist in db.js
 for (const b of ['earlyMorning', 'morning', 'afternoon', 'evening', 'night']) if (!read('js/db.js').includes(`'${b}'`)) fail(`db.js: time block ${b} missing`);
 // Files named in the CLAUDE.md repo layout exist
-const layout = claude.match(/## Repo layout\s+```\n([\s\S]*?)```/)[1].split('\n').filter(Boolean);
+const layoutText = claude.match(/## Repo layout\s+```\n([\s\S]*?)```/)[1];
+const layout = layoutText.replace(/,\n\s+/g, ', ').split('\n').filter(Boolean);
+for (const f of readdirSync('js').filter((x) => x.endsWith('.js'))) if (!layoutText.includes(f)) fail(`CLAUDE.md layout does not list js/${f}`);
+for (const f of readdirSync('scripts')) if (!layoutText.includes(f)) fail(`CLAUDE.md layout does not list scripts/${f}`);
 for (const line of layout) {
   const dir = line.match(/^\/(\S+?)\/\s+(.+)$/);
   if (dir) {
@@ -162,6 +165,54 @@ const flat = (o, pre = '') => Object.entries(o).flatMap(([k, v]) => (v && typeof
 const dynamicPrefixes = ['export.', 'breathe.', 'safety.', 'more.items.', 'after.', 'play.', 'setup.', 'lists.', 'nameIt.', 'stims.', 'nav.'];
 const unused = flat(copy).filter((k) => !allJs.includes(`'${k}'`) && !dynamicPrefixes.some((p) => k.startsWith(p)) && !allJs.includes(k.split('.').slice(0, -1).join('.') + "'"));
 if (unused.length) console.log('note: copy keys not referenced in code: ' + unused.join(', '));
+
+// ---- Milestone 7: quality bar ----
+// Size: everything the app ships stays under 2 MB, with no runtime dependencies
+const shipped = shell.filter((f) => f !== './');
+const bytes = shipped.reduce((n, f) => n + statSync(f).size, 0);
+if (bytes > 2 * 1024 * 1024) fail(`app size is ${(bytes / 1048576).toFixed(2)} MB, over the 2 MB limit`);
+if (existsSync('package.json') && (json('package.json').dependencies || {}) && Object.keys(json('package.json').dependencies || {}).length) fail('package.json: runtime dependencies are not allowed');
+
+// Manifest and icons
+const man = json('manifest.webmanifest');
+if (man.display !== 'standalone') fail('manifest: display must be standalone');
+for (const k of ['start_url', 'scope']) if (!man[k] || man[k].startsWith('/') || man[k].includes('://')) fail(`manifest: ${k} must be relative`);
+if (!man.shortcuts?.some((x) => x.url.endsWith('#/now'))) fail('manifest: missing the Now shortcut');
+const png = (f) => { const b = readFileSync(f); return b.toString('latin1', 1, 4) === 'PNG' ? [b.readUInt32BE(16), b.readUInt32BE(20)] : null; };
+for (const ic of man.icons) {
+  const [w, h] = (ic.sizes || '').split('x').map(Number);
+  if (!existsSync(ic.src)) { fail(`manifest: icon ${ic.src} is missing`); continue; }
+  const got = png(ic.src);
+  if (!got || got[0] !== w || got[1] !== h) fail(`manifest: icon ${ic.src} is not ${ic.sizes}`);
+}
+for (const need of [192, 512]) if (!man.icons.some((x) => x.sizes === `${need}x${need}` && x.purpose !== 'maskable')) fail(`manifest: missing a ${need}px icon`);
+if (!man.icons.some((x) => x.purpose === 'maskable')) fail('manifest: missing a maskable icon');
+const page = read('index.html');
+if (!/<html[^>]*lang="en-IE"/.test(page)) fail('index.html: lang should be en-IE');
+if (!/viewport-fit=cover/.test(page)) fail('index.html: viewport-fit=cover is missing');
+if (!/apple-touch-icon/.test(page)) fail('index.html: apple-touch-icon is missing');
+if (!/Content-Security-Policy/.test(page) || !/default-src 'self'/.test(page) || !/connect-src 'self'/.test(page)) fail('index.html: Content-Security-Policy must limit everything to the app itself');
+
+// Copy and tone in everything the user reads
+const readable = [['data/copy.json', read('data/copy.json')], ['data/tools.json', read('data/tools.json')], ['data/defaults.json', read('data/defaults.json')], ['data/tags.json', read('data/tags.json')], ['README.md', read('README.md')]];
+const US = /\b(color|colors|favorite|favorites|organize|organized|behavior|gray|center|centered|neighbor|realize|recognize|program(?!me)|meter)\b/i;
+for (const [f, txt] of readable) {
+  const m = txt.match(US); if (m && !/^(README)/.test(f)) fail(`${f}: US spelling "${m[0]}" (use British/Irish spelling)`);
+  if (f.endsWith('.json') && /!/.test(txt.replace(/"[^"]*":/g, ''))) fail(`${f}: exclamation mark in copy`);
+}
+// No emoji in tool instructions (Now card icons in defaults.json are the only exception)
+if (/[\u{1F300}-\u{1FAFF}\u{2600}-\u{27BF}]/u.test(JSON.stringify(toolsData))) fail('tools.json: emoji in tool instructions');
+// Banned phrases inside code strings too (comments are ignored)
+const stripComments = (src) => src.replace(/\/\*[\s\S]*?\*\//g, '').replace(/(^|[^:])\/\/.*$/gm, '$1');
+for (const f of walk('js')) {
+  const src = stripComments(read(f)).toLowerCase();
+  for (const b of banned) if (src.includes(b)) fail(`${f}: banned phrase in code: "${b}"`);
+}
+// Hard-coded words in markup: labels come from copy.json (a few characters and symbols are fine)
+for (const f of walk('js')) {
+  const src = stripComments(read(f));
+  for (const m of src.matchAll(/aria-label="([A-Za-z][^"$]*)"/g)) fail(`${f}: hard-coded aria-label "${m[1]}" (put it in copy.json)`);
+}
 
 if (errors.length) { console.error(errors.map((e) => '✗ ' + e).join('\n')); process.exit(1); }
 console.log(`check passed: ${ids.size} tools, ${refs.length} references, copy and safety text verified`);

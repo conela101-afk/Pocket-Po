@@ -103,7 +103,16 @@ async function logSessionUnsafe({ tool, mode, opener, startedAt, completed, exit
     triggers: [], context: [], body: [], note: null, voiceNoteId: null
   };
   rec.id = await put('sessions', rec);
+  bumpPoState(rec).catch(() => {});
   return rec;
+}
+
+/** Cumulative use for Po's unlocks. Only ever counts up. Quick looks (opened) do not count. */
+async function bumpPoState(rec) {
+  if (rec.opened) return;
+  const st = (await get('poState', 'state')) || { id: 'state', count: 0 };
+  st.count++;
+  await put('poState', st);
 }
 
 /** Logging never throws: if storage fails the tool carries on and the user sees nothing. */

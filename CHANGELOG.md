@@ -20,3 +20,6 @@ An optional, self-fading row after a tool (feeling scale, helped or not, tags, n
 
 ## 0.6.0 — Export and backup
 Appointment summary, detailed report, CSV, and a JSON backup with restore. Quick exits now log as "opened", plans start their tool straight away, and content screens are left out of the early-exit rate.
+
+## 0.7.0 — Polish and hardening
+Po's corner with permanent cosmetic unlocks, an accessibility and contrast pass, a content-security policy, stricter checks, and a copy-review file and phone-testing checklist.

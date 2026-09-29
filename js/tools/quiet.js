@@ -8,7 +8,7 @@ import { esc, cancelAll, backTo } from './common.js';
 export function runQuiet(view, tool, mode, opener) {
   cancelAll();
   const startedAt = Date.now();
-  view.innerHTML = `<div class="quiet-screen">${poHTML('sleep', 'lg')}
+  view.innerHTML = `<div class="quiet-screen"><h1 class="sr-only">${esc(tool.name)}</h1>${poHTML('sleep', 'lg')}
     <button id="leave" class="quiet-leave">${esc(t('now.back'))}</button></div>`;
   view.querySelector('#leave').onclick = async () => {
     await logSession({ tool, mode, opener, startedAt, completed: true, exitedEarly: false });

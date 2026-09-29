@@ -25,9 +25,10 @@ export function runSession(view, tool, mode, opener, { dur = 0, poState = 'sit',
   const startedAt = Date.now();
   let ended = false;
   view.innerHTML = `
+    <h1 class="sr-only">${esc(tool.name)}</h1>
     <div class="center">${poHTML(poState, poSize)}</div>
     <div id="stage">${stage}</div>
-    <p class="phase" id="msg">${esc(hint)}</p>
+    <p class="phase" id="msg" aria-live="polite">${esc(hint)}</p>
     ${tool.caution ? `<div class="center"><button id="info" aria-label="${esc(t('tool.cautionTitle'))}">${esc(t('tool.info'))}</button></div><div id="cautionSlot"></div>` : ''}
     <div class="stopbar stack" id="bar"><button class="primary" id="stop">${esc(t('now.stop'))}</button></div>`;
   const po = view.querySelector('.po');

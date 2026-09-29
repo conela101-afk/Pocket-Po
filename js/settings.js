@@ -2,7 +2,7 @@
 const KEY = 'pocketpo.settings';
 const DEFAULTS = {
   reduceMotion: false, sound: false, vibration: false, theme: 'auto', textSize: 'medium',
-  highContrast: false, autoStart: false, handoffMessage: null, nowDefaults: null, quiet: null,
+  highContrast: false, autoStart: false, comfortExhale: false, handoffMessage: null, nowDefaults: null, quiet: null,
   coldAcknowledged: false, setupDone: false, favourites: [], recent: []
 };
 

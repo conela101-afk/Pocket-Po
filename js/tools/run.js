@@ -5,6 +5,7 @@ import { getSetting, setSetting } from '../settings.js';
 import { logSession } from '../db.js';
 import { poHTML } from '../po.js';
 import { go } from '../router.js';
+import { runBreathing } from './breathe.js';
 
 const esc = (s) => String(s).replace(/[&<>"]/g, (c) => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;' }[c]));
 
@@ -28,10 +29,12 @@ export function runTool(view, toolId, mode = 'library', opener = 'browse') {
     return;
   }
 
-  const startedAt = Date.now();
   const recent = [toolId, ...getSetting('recent').filter((x) => x !== toolId)].slice(0, 8);
   setSetting('recent', recent);
 
+  if (tool.category === 'breathing') return runBreathing(view, tool, mode, opener);
+
+  const startedAt = Date.now();
   view.innerHTML = `
     <div class="center">
       ${poHTML('sit')}

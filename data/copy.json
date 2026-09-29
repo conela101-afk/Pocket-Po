@@ -62,7 +62,8 @@
   "textSize": "Text size",
   "highContrast": "High contrast",
   "autoStart": "Auto-start top Now card",
-  "handoffMessage": "Handoff message"
+  "handoffMessage": "Handoff message",
+  "comfort": "Shorter exhale, just go at your pace"
  },
  "safety": {
   "cold": "Cold on the face can slow your heart rate. Skip it if you have a heart condition, take medication that affects heart rate, tend to faint, or have a skin condition on your face. Use cool water or a wrapped ice pack, never ice directly on skin, never hold your breath or submerge your head. If unsure, check with your GP. Stop if you feel dizzy or unwell.",
@@ -70,5 +71,17 @@
  },
  "handoff": {
   "copied": "Message copied"
+ },
+ "breathe": {
+  "length": "How long",
+  "noHolds": "No holds",
+  "comfort": "Shorter exhale, just go at your pace",
+  "start": "Start",
+  "settled": "Po is settled. Stay as long as you like.",
+  "in": "In",
+  "out": "Out",
+  "hold": "Hold",
+  "topup": "A little more",
+  "hum": "Hum out"
  }
 }

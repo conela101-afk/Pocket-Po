@@ -14,3 +14,8 @@ Defaults picked without asking. Change any of them and tell Claude.
 - **Favourites and recents:** kept in small settings (localStorage) for now, not the IndexedDB `favourites` store.
 - **Quiet card and setup flow:** deferred to Milestone 3 as planned.
 - **`data/defaults.json`:** added alongside the three listed data files to hold Now defaults and Home rotation.
+- **Comfort toggle (breathing):** one shared setting. It removes holds and makes the exhale the same length as the inhale. It applies in Now mode too, so Now stays decision-free.
+- **Now-mode breathing length:** 3 minutes, starts immediately, and Stop is always there.
+- **Breathing end:** at the end of a cycle after the chosen length, Po yawns and settles, and the session logs as completed. Stopping early logs "exited early".
+- **Reduced motion:** Po holds one static pose and the ring jumps instead of sweeping. The In/Out/Hold word is always shown, so the cue never depends on motion or sound.
+- **Sound and vibration:** off by default. Sound is a single soft generated tone, no audio files.

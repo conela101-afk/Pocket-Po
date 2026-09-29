@@ -1,4 +1,5 @@
 import { loadData, t } from './data.js';
+import { loadPo } from './po.js';
 import { applySettings, getSetting, setSetting } from './settings.js';
 import { requestPersistence } from './db.js';
 import { route, start } from './router.js';
@@ -17,7 +18,7 @@ function renderNav(active) {
 
 async function main() {
   applySettings();
-  await loadData();
+  await Promise.all([loadData(), loadPo()]);
   route('home', s.home);
   route('now', s.now);
   route('tool', s.tool);

@@ -1,11 +1,12 @@
 // Cache-first app shell. Bump VERSION whenever any shell file changes.
-const VERSION = 'pocket-po-v2';
+const VERSION = 'pocket-po-v4';
 const SHELL = [
   './', 'index.html', 'manifest.webmanifest',
   'css/app.css', 'css/po.css', 'css/themes.css',
   'js/app.js', 'js/router.js', 'js/db.js', 'js/po.js', 'js/settings.js', 'js/data.js',
-  'js/screens.js', 'js/handoff.js', 'js/tools/run.js',
+  'js/screens.js', 'js/handoff.js', 'js/tools/run.js', 'js/tools/breathe.js',
   'data/tools.json', 'data/tags.json', 'data/copy.json', 'data/defaults.json',
+  'assets/po/po-sheet.png', 'assets/po/po-sheet.json',
   'assets/icons/icon-192.png', 'assets/icons/icon-512.png', 'assets/icons/icon-maskable-512.png'
 ];
 

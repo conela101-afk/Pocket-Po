@@ -1,0 +1,51 @@
+{
+ "frameSize": 32,
+ "cols": 6,
+ "rows": 11,
+ "states": {
+  "idle-loaf": {
+   "row": 0,
+   "frames": 4
+  },
+  "sit": {
+   "row": 1,
+   "frames": 4
+  },
+  "breathe-in": {
+   "row": 2,
+   "frames": 6
+  },
+  "breathe-out": {
+   "row": 3,
+   "frames": 6
+  },
+  "sleep": {
+   "row": 4,
+   "frames": 4
+  },
+  "purr": {
+   "row": 5,
+   "frames": 4
+  },
+  "walk": {
+   "row": 6,
+   "frames": 6
+  },
+  "wash": {
+   "row": 7,
+   "frames": 6
+  },
+  "watch-bird": {
+   "row": 8,
+   "frames": 4
+  },
+  "yawn-settle": {
+   "row": 9,
+   "frames": 6
+  },
+  "stretch": {
+   "row": 10,
+   "frames": 6
+  }
+ }
+}

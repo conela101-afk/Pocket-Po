@@ -107,7 +107,7 @@ export function settings() {
   const sel = (key, label, opts) => `<label class="setting"><span>${esc(label)}</span><select data-k="${key}">${opts.map(([v, l]) => `<option value="${v}" ${getSetting(key) === v ? 'selected' : ''}>${esc(l)}</option>`).join('')}</select></label>`;
   view().innerHTML = `<h1>${esc(t('settings.title'))}</h1>
     ${cb('reduceMotion', t('settings.reduceMotion'))}${cb('sound', t('settings.sound'))}${cb('vibration', t('settings.vibration'))}
-    ${cb('highContrast', t('settings.highContrast'))}${cb('autoStart', t('settings.autoStart'))}
+    ${cb('highContrast', t('settings.highContrast'))}${cb('autoStart', t('settings.autoStart'))}${cb('comfortExhale', t('settings.comfort'))}
     ${sel('theme', t('settings.dark'), [['auto', t('settings.darkAuto')], ['dark', t('settings.darkOn')], ['light', t('settings.darkOff')]])}
     ${sel('textSize', t('settings.textSize'), [['small', 'Small'], ['medium', 'Medium'], ['large', 'Large']])}
     <label class="setting" style="align-items:flex-start;flex-direction:column"><span>${esc(t('settings.handoffMessage'))}</span>

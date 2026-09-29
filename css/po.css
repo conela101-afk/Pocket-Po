@@ -1,10 +1,27 @@
-/* Placeholder Po (inline SVG). Real spritesheet arrives in Milestone 2. */
-.po { display: block; margin: .5rem auto 1rem; width: 128px; height: 128px; image-rendering: pixelated; }
-.po svg { width: 100%; height: 100%; shape-rendering: crispEdges; }
-.po.sm { width: 64px; height: 64px; }
-.po .eyes-open { display: inline; }
-.po .eyes-closed { display: none; }
-.po[data-state="sleep"] .eyes-open { display: none; }
-.po[data-state="sleep"] .eyes-closed { display: inline; }
-@keyframes po-bob { 0%, 100% { transform: translateY(0); } 50% { transform: translateY(-2px); } }
-.po[data-state="sleep"] svg { animation: po-bob 4s ease-in-out infinite; }
+/* Po: 32px frames shown at 4x (128px). .sm is 2x. */
+.po { --s: 128px; display: block; margin: .5rem auto 1rem; width: var(--s); height: var(--s); }
+.po.sm { --s: 64px; }
+.po-sprite {
+  width: 100%; height: 100%; image-rendering: pixelated;
+  background: url("../assets/po/po-sheet.png") no-repeat;
+  background-size: calc(var(--s) * 6) calc(var(--s) * 11);
+  background-position: 0 calc(var(--row) * var(--s) * -1);
+  animation: po-play var(--dur) steps(var(--n)) infinite;
+}
+/* One-shot states play once and hold on their last frame. */
+.po.once .po-sprite { animation: po-once var(--dur) steps(calc(var(--n) - 1), end) 1 forwards; }
+@keyframes po-play { from { background-position-x: 0; } to { background-position-x: calc(var(--n) * var(--s) * -1); } }
+@keyframes po-once { from { background-position-x: 0; } to { background-position-x: calc((var(--n) - 1) * var(--s) * -1); } }
+/* Reduced motion: single static pose. */
+html[data-motion="reduce"] .po-sprite { animation: none !important; background-position-x: calc(var(--rest) * var(--s) * -1); }
+
+/* Breathing pacer */
+.pacer { position: relative; width: 240px; height: 240px; margin: 0 auto; display: grid; place-items: center; }
+.pacer .po { margin: 0; }
+.ring { position: absolute; inset: 0; transform: rotate(-90deg); }
+.ring circle { fill: none; stroke-width: 6; stroke-linecap: round; }
+.ring .track { stroke: var(--surface-2); }
+.ring .fill { stroke: var(--accent); transition-property: stroke-dashoffset; transition-timing-function: linear; }
+.phase { text-align: center; font-size: 1.6rem; min-height: 2.4rem; margin: .5rem 0 1rem; }
+.chips { display: flex; flex-wrap: wrap; gap: .5rem; }
+.chips button[aria-pressed="true"] { background: var(--accent); color: var(--accent-text); border-color: transparent; }

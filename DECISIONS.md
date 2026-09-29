@@ -31,3 +31,13 @@ All art (icons, Po spritesheet) is generated in this repo by `tools-dev/`. Fonts
 
 ## Proposed
 (Ideas not in `SPEC.md` go here, not in code.)
+
+## Milestone 3
+- **Setup:** four short steps (Now cards; Quiet and handoff message; how Po looks; motion and sound). Shown once on first launch from the plain home address only, so the Now shortcut is never interrupted. Every step has Skip and Back. It resumes where it stopped, and "Set up Now" in More opens it again at step 1. Skipping keeps the default cards.
+- **Now card choices:** only tools with a finished screen can be picked: cool face, cool hands, Pace, Pet Po, Pattern trace. More join the list as later milestones finish them.
+- **Quiet:** a 4th card, off until switched on in setup (so Now is at most 3 cards plus Quiet). Leaving Quiet logs a neutral completed session, not "exited early", since it has no planned end and would otherwise always read as early.
+- **Cool tools:** a calm screen for about 30 seconds with no countdown or numbers, then Po settles. The caution shows once before first use and from the "i" button any time.
+- **Absorb tools:** Pet Po and Pattern trace are done, with a soft end at 3 minutes (Po yawns, input stops, screen fades). No score, and no progress ring, in line with rule 1. Bubble pop, sort shapes and kaleidoscope belong to Milestone 4.
+- **Pattern trace:** the trail fades after a couple of seconds so nothing accumulates.
+- **Po look:** Standard, Clearer (more contrast) or Softer (less saturated), shown on light and dark backgrounds. This is a simple check for legibility, not a colour-vision test. The chosen look shows a tick as well as a border, so colour is never the only signal.
+- **Licence:** MIT, copyright holder is the repo's GitHub username.

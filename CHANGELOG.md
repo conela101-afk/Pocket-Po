@@ -8,3 +8,6 @@ Po now has a placeholder spritesheet with all 11 states. The seven breathing too
 
 ## 0.2.1 — Rules pass
 New content, data and update rules added to `CLAUDE.md`. Cool-not-painful wording, gentler TIPP, silent logging failures, and updates that wait for the next launch.
+
+## 0.3.0 — Now mode
+First-run setup, Quiet card, cool-water screens and two absorb tools with a soft end. MIT licence added.

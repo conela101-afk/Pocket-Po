@@ -728,6 +728,19 @@
    ],
    "prompt": "Give one feeling a name.",
    "flags": []
+  },
+  {
+   "id": "quiet",
+   "name": "Quiet",
+   "category": "body",
+   "durationOptions": [],
+   "modes": [
+    "now"
+   ],
+   "prompt": "The screen dims. Po sleeps. Nothing is asked.",
+   "flags": [
+    "quiet"
+   ]
   }
  ]
 }

@@ -4,6 +4,7 @@ import { applySettings, getSetting, setSetting } from './settings.js';
 import { requestPersistence } from './db.js';
 import { route, start } from './router.js';
 import * as s from './screens.js';
+import { setup } from './setup.js';
 
 const NAV = [['home', '/home'], ['now', '/now'], ['build', '/build'], ['library', '/library'], ['more', '/more']];
 
@@ -27,15 +28,18 @@ async function main() {
   route('more', s.more);
   route('settings', s.settings);
   route('safety', s.safety);
+  route('setup', setup);
   let current = null;
+  // First launch only: offer setup. A direct #/now (the shortcut) is never redirected.
+  if (!getSetting('setupState') && ['', '#', '#/', '#/home'].includes(location.hash)) location.hash = '#/setup';
   await start((name) => {
     if (current) sessionStorage.setItem('prevRoute', current); else sessionStorage.removeItem('prevRoute');
     current = name;
-    renderNav(name === 'settings' || name === 'safety' ? 'more' : name);
-    document.body.toggleAttribute('data-hide-fab', name === 'now' || name === 'tool');
+    renderNav(['settings', 'safety', 'setup'].includes(name) ? 'more' : name);
+    document.body.toggleAttribute('data-hide-fab', ['now', 'tool', 'setup'].includes(name));
     scrollTo(0, 0);
   });
-  if (!getSetting('setupDone')) { setSetting('setupDone', true); requestPersistence(); }
+  if (!getSetting('persistAsked')) { setSetting('persistAsked', true); requestPersistence(); }
   if ('serviceWorker' in navigator) navigator.serviceWorker.register('service-worker.js').catch(() => {});
 }
 main();

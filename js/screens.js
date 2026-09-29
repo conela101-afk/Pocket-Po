@@ -36,15 +36,17 @@ export async function home() {
     ${plans.length ? `<h2>${esc(t('home.plans'))}</h2><div class="stack"><a class="card" href="#/more">${esc(t('home.plans'))}</a></div>` : ''}`;
 }
 
+const nowCard = (id) => {
+  const c = getDefaults().nowCards[id];
+  return `<a class="card big" href="#/tool/${id}/nowButton"><span class="icon" aria-hidden="true">${c.icon}</span><span>${esc(c.label)}</span></a>`;
+};
+
 export function now() {
   const ids = getSetting('nowDefaults') || getDefaults().defaults.now;
-  const cards = ids.slice(0, 3).map((id) => {
-    const c = getDefaults().nowCards[id];
-    return `<a class="card big" href="#/tool/${id}/nowButton"><span class="icon" aria-hidden="true">${c.icon}</span><span>${esc(c.label)}</span></a>`;
-  });
+  const cards = ids.filter((id) => getDefaults().nowCards[id]).slice(0, 3).map(nowCard);
   view().innerHTML = `
     ${poHTML('sit')}
-    <div class="stack">${cards.join('')}</div>
+    <div class="stack">${cards.join('')}${getSetting('quiet') ? nowCard('quiet') : ''}</div>
     <div class="stack" style="margin-top:1rem"><button id="handoff" title="${esc(handoffMessage())}">${esc(t('now.handoff'))}: ${esc(handoffMessage())}</button></div>
     ${crisis()}`;
   document.getElementById('handoff').onclick = () => doHandoff(toast);
@@ -89,7 +91,7 @@ export function library() {
 
 export function more() {
   const it = t('more.items');
-  const live = { settings: '#/settings', safety: '#/safety' };
+  const live = { setup: '#/setup/1', settings: '#/settings', safety: '#/safety' };
   const rows = Object.entries(it).map(([k, label]) => live[k]
     ? `<a class="card" href="${live[k]}">${esc(label)}</a>`
     : `<div class="card" aria-disabled="true"><span>${esc(label)}</span><span class="muted">${esc(t('more.soon'))}</span></div>`);

@@ -42,6 +42,25 @@
   "pet-po": {
    "icon": "♡",
    "label": "Pet Po"
+  },
+  "cold-hands": {
+   "icon": "❄",
+   "label": "Cool hands, 30 seconds"
+  },
+  "pattern-trace": {
+   "icon": "〰",
+   "label": "Trace a slow pattern"
+  },
+  "quiet": {
+   "icon": "☾",
+   "label": "Quiet"
   }
- }
+ },
+ "nowChoices": [
+  "cold-face",
+  "cold-hands",
+  "ext-exhale",
+  "pet-po",
+  "pattern-trace"
+ ]
 }

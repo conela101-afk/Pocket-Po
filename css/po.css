@@ -25,3 +25,13 @@ html[data-motion="reduce"] .po-sprite { animation: none !important; background-p
 .phase { text-align: center; font-size: 1.6rem; min-height: 2.4rem; margin: .5rem 0 1rem; }
 .chips { display: flex; flex-wrap: wrap; gap: .5rem; }
 .chips button[aria-pressed="true"] { background: var(--accent); color: var(--accent-text); border-color: transparent; }
+
+.po.lg { --s: 192px; }
+.po { touch-action: manipulation; }
+/* Po look options (chosen in setup) */
+:root[data-po="clear"] .po-sprite { filter: contrast(1.3) saturate(1.1); }
+:root[data-po="soft"] .po-sprite { filter: saturate(.65) brightness(1.05); }
+.looks[data-po="clear"] .po-sprite { filter: contrast(1.3) saturate(1.1); }
+.looks[data-po="soft"] .po-sprite { filter: saturate(.65) brightness(1.05); }
+.looks[data-po="standard"] .po-sprite { filter: none; }
+.quiet-screen .po-sprite { filter: brightness(.55); }

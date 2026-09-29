@@ -64,4 +64,4 @@ Please don't add personal data to this repository, including in issues, screensh
 
 ## Licence
 
-Not yet chosen. Until one is added, all rights are reserved.
+MIT. See `LICENSE`.

@@ -33,6 +33,12 @@ for (const id of defaults.defaults.now) if (!(id in defaults.nowCards)) fail(`de
 for (const [id, c] of Object.entries(defaults.nowCards)) {
   if (c.label.split(/\s+/).length > 6) fail(`Now card "${id}" has more than 6 words`);
 }
+for (const id of defaults.nowChoices) {
+  if (!ids.has(id)) fail(`defaults.json: nowChoices has unknown tool id ${id}`);
+  if (!(id in defaults.nowCards)) fail(`defaults.json: no Now card for choice ${id}`);
+}
+for (const id of defaults.defaults.now) if (!defaults.nowChoices.includes(id)) fail(`defaults.json: default ${id} is not in nowChoices`);
+if (!('quiet' in defaults.nowCards) || !ids.has('quiet')) fail('quiet tool or card missing');
 for (const g of Object.values(tags)) if (!g.tags.length) fail('tags.json: empty tag group');
 
 // Copy keys used in code must resolve

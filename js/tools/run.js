@@ -6,6 +6,11 @@ import { logSession } from '../db.js';
 import { poHTML } from '../po.js';
 import { go } from '../router.js';
 import { runBreathing } from './breathe.js';
+import { runCool } from './cool.js';
+import { runPetPo, runPatternTrace } from './absorb.js';
+import { runQuiet } from './quiet.js';
+
+const RUNNERS = { 'cold-face': runCool, 'cold-hands': runCool, 'pet-po': runPetPo, 'pattern-trace': runPatternTrace, quiet: runQuiet };
 
 const esc = (s) => String(s).replace(/[&<>"]/g, (c) => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;' }[c]));
 
@@ -29,8 +34,8 @@ export function runTool(view, toolId, mode = 'library', opener = 'browse') {
     return;
   }
 
-  const recent = [toolId, ...getSetting('recent').filter((x) => x !== toolId)].slice(0, 8);
-  setSetting('recent', recent);
+  if (tool.modes.includes('library')) setSetting('recent', [toolId, ...getSetting('recent').filter((x) => x !== toolId)].slice(0, 8));
+  if (RUNNERS[toolId]) return RUNNERS[toolId](view, tool, mode, opener);
 
   if (tool.category === 'breathing') return runBreathing(view, tool, mode, opener);
 

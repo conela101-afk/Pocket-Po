@@ -3,7 +3,7 @@ const KEY = 'pocketpo.settings';
 const DEFAULTS = {
   reduceMotion: false, sound: false, vibration: false, theme: 'auto', textSize: 'medium',
   highContrast: false, autoStart: false, comfortExhale: false, handoffMessage: null, nowDefaults: null, quiet: null,
-  coldAcknowledged: false, setupDone: false, favourites: [], recent: []
+  coldAcknowledged: false, setupState: null, setupStep: 1, persistAsked: false, poLook: 'standard', favourites: [], recent: []
 };
 
 let cache = null;
@@ -30,5 +30,6 @@ export function applySettings() {
   root.dataset.motion = motion ? 'reduce' : 'full';
   if (s.theme === 'auto') delete root.dataset.theme; else root.dataset.theme = s.theme;
   root.dataset.textsize = s.textSize;
+  root.dataset.po = s.poLook;
   if (s.highContrast) root.dataset.contrast = 'high'; else delete root.dataset.contrast;
 }

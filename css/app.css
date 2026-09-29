@@ -69,3 +69,18 @@ html[data-motion="reduce"] *, html[data-motion="reduce"] *::before, html[data-mo
   * { animation: none !important; transition: none !important; }
 }
 @media print { #nav, .fab { display: none; } }
+
+/* Setup and looks */
+.looks { display: inline-flex; gap: .25rem; }
+.swatch { display: inline-block; border-radius: 8px; padding: .25rem; }
+.swatch.light { background: #f4ede2; } .swatch.dark { background: #2e3440; }
+.swatch .po { margin: 0; }
+.look[aria-pressed="true"] { border: 3px solid var(--accent); }
+.look[aria-pressed="true"]::after { content: "✓"; font-weight: 700; }
+#picks input, .card input[type="checkbox"] { width: 28px; height: 28px; flex: none; }
+.trace { width: 100%; max-width: 20rem; display: block; margin: 0 auto; touch-action: none; background: var(--surface); border-radius: 16px; }
+.trace .guide { fill: none; stroke: var(--muted); stroke-width: 3; stroke-dasharray: 2 9; stroke-linecap: round; }
+.trace .trail { fill: none; stroke: var(--accent); stroke-width: 9; stroke-linecap: round; stroke-linejoin: round; opacity: .85; }
+#stage { transition: opacity 2s; }
+#stage.settled { opacity: .3; pointer-events: none; }
+.quiet-leave { min-width: 160px; margin-top: 2rem; background: transparent; color: #8a8f98; border-color: #3a3f47; }

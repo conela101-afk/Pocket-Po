@@ -4,6 +4,7 @@ import { getSetting, setSetting } from '../settings.js';
 import { logSession } from '../db.js';
 import { poHTML, setPo } from '../po.js';
 import { go } from '../router.js';
+import { showAfterRow, scaleHTML, wireScale } from './afterrow.js';
 
 const esc = (s) => String(s).replace(/[&<>"]/g, (c) => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;' }[c]));
 
@@ -63,6 +64,7 @@ export function runBreathing(view, tool, mode, opener) {
       <div class="center">${poHTML('sit')}<h1>${esc(tool.name)}</h1><p>${esc(tool.prompt)}</p></div>
       <h2>${esc(t('breathe.length'))}</h2>
       <div class="chips">${tool.durationOptions.map((s) => `<button data-d="${s}" aria-pressed="${s === opts.dur}">${s / 60} min</button>`).join('')}</div>
+      ${getSetting('afterRow') ? `<h2>${esc(t('after.before'))}</h2>${scaleHTML()}` : ''}
       <div style="margin-top:.75rem">
         ${tool.flags.includes('hasHoldVariant') ? `<label class="setting"><span>${esc(t('breathe.noHolds'))}</span><input type="checkbox" id="nh"></label>` : ''}
         <label class="setting"><span>${esc(t('breathe.comfort'))}</span><input type="checkbox" id="cf" ${getSetting('comfortExhale') ? 'checked' : ''}></label>
@@ -74,6 +76,7 @@ export function runBreathing(view, tool, mode, opener) {
     });
     view.querySelector('#nh')?.addEventListener('change', (e) => { opts.noHolds = e.target.checked; });
     view.querySelector('#cf').onchange = (e) => setSetting('comfortExhale', e.target.checked);
+    wireScale(view, (n) => { opts.before = n; });
     view.querySelector('#go').onclick = run;
   };
 
@@ -95,18 +98,20 @@ export function runBreathing(view, tool, mode, opener) {
 
     const finish = async (completed) => {
       if (ended) return; ended = true; clearTimers();
-      await logSession({ tool, mode, opener, startedAt, completed, exitedEarly: !completed });
+      const rec = await logSession({ tool, mode, opener, startedAt, completed, exitedEarly: !completed, ratingBefore: opts.before ?? null });
       if (!completed) return go(back);
       setPo(po, 'yawn-settle', { dur: 3 });
       fill.style.transitionDuration = '2s'; fill.style.strokeDashoffset = C;
       label.textContent = t('breathe.settled');
-      view.querySelector('.stopbar').innerHTML = `<a class="btn primary" href="#${back}">${esc(t('now.back'))}</a>`;
+      const bar = view.querySelector('.stopbar');
+      bar.innerHTML = `<a class="btn primary" href="#${back}">${esc(t('now.back'))}</a>`;
+      showAfterRow(bar, rec); // only after a tool ends by itself, never on Stop
     };
     view.querySelector('#stop').onclick = () => finish(false);
     addEventListener('hashchange', () => {  // leaving by another route: neutral early exit, no redirect
       if (ended) return;
       ended = true; clearTimers();
-      logSession({ tool, mode, opener, startedAt, completed: false, exitedEarly: true });
+      logSession({ tool, mode, opener, startedAt, completed: false, exitedEarly: true, ratingBefore: opts.before ?? null });
     }, { once: true });
 
     const step = () => {

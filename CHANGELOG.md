@@ -14,3 +14,6 @@ First-run setup, Quiet card, cool-water screens and two absorb tools with a soft
 
 ## 0.4.0 — Library and Build
 All 47 tools now have real screens. Adds if-then plans, parking lot, evidence bank, appointment prep, stims, three absorb games and the six Build practices.
+
+## 0.5.0 — Ratings and tags
+An optional, self-fading row after a tool (feeling scale, helped or not, tags, note), an optional "before" scale on breathing start screens, and a tag editor in More.

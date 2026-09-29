@@ -82,7 +82,7 @@ export function library() {
 
 export function more() {
   const it = t('more.items');
-  const live = { setup: '#/setup/1', notes: '#/tool/evidence-bank/browse', plans: '#/tool/contingency-builder/browse', parking: '#/tool/parking-lot/browse', prep: '#/tool/appointment-prep/browse', settings: '#/settings', safety: '#/safety' };
+  const live = { setup: '#/setup/1', notes: '#/tool/evidence-bank/browse', plans: '#/tool/contingency-builder/browse', parking: '#/tool/parking-lot/browse', prep: '#/tool/appointment-prep/browse', tags: '#/tags', settings: '#/settings', safety: '#/safety' };
   const rows = Object.entries(it).map(([k, label]) => live[k]
     ? `<a class="card" href="${live[k]}">${esc(label)}</a>`
     : `<div class="card" aria-disabled="true"><span>${esc(label)}</span><span class="muted">${esc(t('more.soon'))}</span></div>`);
@@ -100,7 +100,7 @@ export function settings() {
   const sel = (key, label, opts) => `<label class="setting"><span>${esc(label)}</span><select data-k="${key}">${opts.map(([v, l]) => `<option value="${v}" ${getSetting(key) === v ? 'selected' : ''}>${esc(l)}</option>`).join('')}</select></label>`;
   view().innerHTML = `<h1>${esc(t('settings.title'))}</h1>
     ${cb('reduceMotion', t('settings.reduceMotion'))}${cb('sound', t('settings.sound'))}${cb('vibration', t('settings.vibration'))}
-    ${cb('highContrast', t('settings.highContrast'))}${cb('autoStart', t('settings.autoStart'))}${cb('comfortExhale', t('settings.comfort'))}
+    ${cb('highContrast', t('settings.highContrast'))}${cb('autoStart', t('settings.autoStart'))}${cb('comfortExhale', t('settings.comfort'))}${cb('afterRow', t('settings.afterRow'))}${cb('bodyTags', t('settings.bodyTags'))}
     ${sel('theme', t('settings.dark'), [['auto', t('settings.darkAuto')], ['dark', t('settings.darkOn')], ['light', t('settings.darkOff')]])}
     ${sel('textSize', t('settings.textSize'), [['small', 'Small'], ['medium', 'Medium'], ['large', 'Large']])}
     <label class="setting" style="align-items:flex-start;flex-direction:column"><span>${esc(t('settings.handoffMessage'))}</span>

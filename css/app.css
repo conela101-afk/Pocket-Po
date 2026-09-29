@@ -110,3 +110,18 @@ html[data-motion="reduce"] .bubble { bottom: auto; }
 .kaleido g.spin { transform-origin: 150px 150px; animation: spin 120s linear infinite; }
 @keyframes spin { to { transform: rotate(360deg); } }
 .chips button[aria-pressed="true"]::before { content: "✓ "; }
+
+/* After-tool row and scale */
+.afterrow { margin-top: 1rem; padding: 1rem; background: var(--surface); border: 1px solid var(--border); border-radius: 16px; transition: opacity 1.5s; }
+.afterrow.fading { opacity: 0; pointer-events: none; }
+.scale { display: flex; gap: .4rem; }
+.scale button { flex: 1; flex-direction: column; gap: .1rem; padding: .35rem .2rem; }
+.scale svg { width: 32px; height: 32px; }
+.scale .ring { fill: none; stroke: var(--muted); stroke-width: 2; }
+.scale .fillc { stroke: none; }
+.scale .s1 .fillc { fill: #6fa3b5; } .scale .s2 .fillc { fill: #7fae8c; } .scale .s3 .fillc { fill: #d2b25a; }
+.scale .s4 .fillc { fill: #d98a45; } .scale .s5 .fillc { fill: #c4573f; }
+.scale button[aria-pressed="true"] { border: 3px solid var(--text); font-weight: 700; background: var(--surface-2); }
+.scale-ends { display: flex; justify-content: space-between; font-size: .85rem; margin-top: .25rem; }
+.afterrow .chips { margin-bottom: .5rem; }
+.afterrow h2 { margin-top: 1rem; }

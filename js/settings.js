@@ -3,7 +3,7 @@ const KEY = 'pocketpo.settings';
 const DEFAULTS = {
   reduceMotion: false, sound: false, vibration: false, theme: 'auto', textSize: 'medium',
   highContrast: false, autoStart: false, comfortExhale: false, handoffMessage: null, nowDefaults: null, quiet: null,
-  coldAcknowledged: false, setupState: null, setupStep: 1, persistAsked: false, poLook: 'standard', favourites: [], stims: [], recent: []
+  coldAcknowledged: false, setupState: null, setupStep: 1, persistAsked: false, poLook: 'standard', favourites: [], stims: [], afterRow: true, bodyTags: false, recent: []
 };
 
 let cache = null;

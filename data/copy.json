@@ -57,7 +57,35 @@
   "traceHint": "Follow the line with your finger.",
   "pulse": "Tap each shoulder, one side and then the other."
  },
+ "after": {
+  "lead": "If you like:",
+  "scale": "How is it now?",
+  "before": "Before you start, if you like: how is it now?",
+  "lo": "Quieter",
+  "hi": "Louder",
+  "helped": "Helped",
+  "neutral": "Neutral",
+  "didnt": "Didn't",
+  "note": "A note, if you like",
+  "groups": {
+   "trigger": "Trigger",
+   "context": "Context",
+   "body": "Body"
+  }
+ },
+ "tags": {
+  "title": "Tags",
+  "intro": "Rename, hide or add tags. The ones you use most move to the front.",
+  "notSure": "Not sure",
+  "hide": "Hide",
+  "show": "Show",
+  "add": "Add",
+  "newPlaceholder": "A new tag",
+  "bodyNote": "Off until you switch it on."
+ },
  "settings": {
+  "afterRow": "Show the optional row after a tool",
+  "bodyTags": "Show body tags",
   "title": "Settings",
   "reduceMotion": "Reduce motion",
   "sound": "Sound",

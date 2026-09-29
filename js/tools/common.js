@@ -3,6 +3,7 @@ import { t } from '../data.js';
 import { logSession } from '../db.js';
 import { poHTML, setPo } from '../po.js';
 import { go } from '../router.js';
+import { showAfterRow } from './afterrow.js';
 
 export const esc = (s) => String(s).replace(/[&<>"]/g, (c) => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;' }[c]));
 
@@ -41,8 +42,9 @@ export function runSession(view, tool, mode, opener, { dur = 0, poState = 'sit',
       msg.textContent = endMessage || t('tool.settled');
       view.querySelector('#bar').innerHTML = `<a class="btn primary" href="#${backTo(mode)}">${esc(t('now.back'))}</a>`;
     }
-    await logSession({ tool, mode, opener, startedAt, completed, exitedEarly: !completed });
-    if (!completed) go(backTo(mode));
+    const rec = await logSession({ tool, mode, opener, startedAt, completed, exitedEarly: !completed });
+    if (!completed) return go(backTo(mode));
+    showAfterRow(view.querySelector('#bar'), rec); // only after a tool ends by itself, never on Stop
   };
   view.querySelector('#stop').onclick = () => finish(false);
   // Leaving by another route (nav bar, back gesture) still logs a neutral early exit, without redirecting.

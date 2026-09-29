@@ -57,7 +57,7 @@ function localISO(d) {
 export const nowISO = () => localISO(new Date());
 
 /** Records what the app can observe with no input from the user. */
-async function logSessionUnsafe({ tool, mode, opener, startedAt, completed, exitedEarly }) {
+async function logSessionUnsafe({ tool, mode, opener, startedAt, completed, exitedEarly, ratingBefore = null }) {
   const start = new Date(startedAt);
   const all = await getAll('sessions');
   let gap = null;
@@ -71,7 +71,7 @@ async function logSessionUnsafe({ tool, mode, opener, startedAt, completed, exit
     durationSec: Math.round((Date.now() - startedAt) / 1000),
     completed: !!completed, exitedEarly: !!exitedEarly,
     gapSincePrevNowSec: gap, handoffPressed: false,
-    ratingBefore: null, ratingAfter: null, helped: null,
+    ratingBefore, ratingAfter: null, helped: null,
     triggers: [], context: [], body: [], note: null, voiceNoteId: null
   };
   rec.id = await put('sessions', rec);

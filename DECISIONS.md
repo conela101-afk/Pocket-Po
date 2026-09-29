@@ -59,3 +59,15 @@ All art (icons, Po spritesheet) is generated in this repo by `tools-dev/`. Fonts
 ## Proposed
 - Optionally save the word chosen in Name it, so it can be attached to a session.
 - Let a plan start its linked tool straight away, skipping the start screen on breathing tools.
+
+## Milestone 5
+- **When the row appears:** only after a tool ends by itself (its soft end, or Done). Never before or during a tool, never after Stop, and never once the user has left. It appears once per session, so nothing is asked twice. Content screens (lists, plans) show no row.
+- **It fades on its own** after about 8 seconds. Any touch, key press or focus inside keeps it there until the user leaves. Under reduced motion it disappears without the fade. It can be switched off in Settings ("Show the optional row after a tool").
+- **Everything saves as you tap.** There is no Save button. The note is stored as typed and never read or interpreted by the app.
+- **The 5-point scale runs Quieter to Louder** and uses a filling circle, position and number, with colour as an extra. A higher number means louder, which matches the recovery indicator in the export (a later, lower rating is a settling). The wording says nothing about how the user is.
+- **"Before" rating:** offered only on the start screen of Library and Build breathing tools, because those are the only tools that have a start screen. Now mode never shows it. The spec's "from a session's detail" route is under Proposed, since a session history screen is not in the More list.
+- **Tags:** the defaults stay in `data/tags.json`. What the user changes (renames, hidden, added) is a small overlay in the `tagsConfig` store, so new default tags in a future version still appear. "Not sure" is fixed and always last. Renaming a tag does not rewrite past sessions. Most-used tags move to the front by counting past sessions.
+- **Body tags** are off until switched on, in Settings or on the Tags screen. They get a "Not sure" too.
+- **No schema change,** so no migration was needed this milestone. The `tagsConfig` store already existed.
+
+- Proposed: a plain session history (tool and date only) so a "before" rating can be added later, and so single sessions can be tagged afterwards.

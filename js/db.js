@@ -1,18 +1,21 @@
 // IndexedDB: session logs and user content. Nothing leaves the device.
 const NAME = 'pocketpo';
+// Schema changes: bump VERSION and add a MIGRATIONS entry. Migrations only ever add; they never drop or rewrite records.
 const VERSION = 1;
 const STORES = ['sessions', 'evidence', 'parkingLot', 'contingencies', 'prepPoints', 'favourites', 'tagsConfig', 'settings', 'poState'];
+const MIGRATIONS = []; // [[2, (db, tx) => {...}], ...]
 let dbp;
 
 function open() {
   if (dbp) return dbp;
   dbp = new Promise((resolve, reject) => {
     const req = indexedDB.open(NAME, VERSION);
-    req.onupgradeneeded = () => {
+    req.onupgradeneeded = (e) => {
       const db = req.result;
       for (const s of STORES) {
         if (!db.objectStoreNames.contains(s)) db.createObjectStore(s, { keyPath: 'id', autoIncrement: true });
       }
+      for (const [v, fn] of MIGRATIONS) if (e.oldVersion < v) fn(db, req.transaction);
     };
     req.onsuccess = () => resolve(req.result);
     req.onerror = () => reject(req.error);
@@ -52,7 +55,7 @@ function localISO(d) {
 }
 
 /** Records what the app can observe with no input from the user. */
-export async function logSession({ tool, mode, opener, startedAt, completed, exitedEarly }) {
+async function logSessionUnsafe({ tool, mode, opener, startedAt, completed, exitedEarly }) {
   const start = new Date(startedAt);
   const all = await getAll('sessions');
   let gap = null;
@@ -73,10 +76,17 @@ export async function logSession({ tool, mode, opener, startedAt, completed, exi
   return rec;
 }
 
+/** Logging never throws: if storage fails the tool carries on and the user sees nothing. */
+export async function logSession(args) {
+  try { return await logSessionUnsafe(args); } catch { return null; }
+}
+
 export async function markHandoff() {
+  try {
   const all = await getAll('sessions');
   const last = all.filter((s) => s.mode === 'now').sort((a, b) => b.ts.localeCompare(a.ts))[0];
   if (last) { last.handoffPressed = true; await put('sessions', last); }
+  } catch { /* silent */ }
 }
 
 export async function requestPersistence() {

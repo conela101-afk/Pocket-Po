@@ -80,3 +80,47 @@ The repo may be public and GitHub Pages is public. **No personal data about the 
 - The app stores nothing personal in code. Personal content (contact choice, messages, notes, logs) exists only on the user's device.
 - If you find personal data in the repo or the owner pastes some into chat, do not copy it into files. Flag it in one line.
 - `npm run check` should fail if `data/banned-personal-terms.txt` (kept out of git via `.gitignore`, maintained locally by the owner) matches any tracked file.
+
+## Content and safety
+
+- No pain, shock or self-harm-adjacent techniques. Never add or word any tool as holding ice, snapping bands, biting sour things, intense sensation to "feel something", or replacing an urge with pain. Cold tools are cool-on-the-face for the dive reflex only, "cool, not painful".
+- No breath holds by default, no extreme exercise, no fasting or food-restriction content. TIPP and similar must be adapted to gentle versions with the cold-tool caution.
+- The app never reads or interprets notes. No keyword detection, no sentiment analysis, no "are you okay?" popups. The crisis footer is always visible instead.
+- No medical, diagnostic or treatment claims. The app is a self-help tool. Do not name conditions in user-facing copy.
+- Don't tell the user what they feel or how they are. Offer, never assert.
+- Original art and copy only. Do not copy art, sprites or wording from other apps. Assets must be original, generated in-repo, or clearly licensed (record licences in `DECISIONS.md`).
+
+## Data safety
+
+- Never lose user data. IndexedDB schema changes need a versioned migration that preserves existing records. Test the migration before shipping.
+- Backup and restore must round-trip. Test export JSON → wipe → restore → identical data.
+- Storage failure must not break tools. If logging fails, the tool still runs and the failure is silent to the user.
+- Times are local. Handle daylight saving and travel correctly; store ISO timestamps with offset.
+
+## Updates and offline
+
+- Version the service-worker cache on every deploy. Updates apply silently on the next launch. No "update now" banners, no forced reloads, and never interrupt a running tool.
+- Never break offline. Any new file must be added to the precache list. Test in airplane mode before finishing a milestone.
+
+## Copy and tone
+
+- Irish/British English spelling (colour, organise).
+- Plain, short, warm, invitation wording. No exclamation-mark cheerleading, no clinical jargon, no motivational slogans.
+- Emojis: none in tool instructions. Sparing use elsewhere is fine.
+- All copy passes the banned-phrases check, including "you should", "you must", "don't forget", "time to", "streak", "missed", "overdue", "keep it up", "great job".
+
+## Scope and process
+
+- One milestone at a time. Do not build ahead. Do not add features not in `SPEC.md`. Put ideas in `DECISIONS.md` under "Proposed", not in code.
+- Small commits, plain messages (what changed, one line). Keep `main` always deployable. Never force-push.
+- Use the noreply commit email. Do not commit under a real email or name.
+- No secrets or third-party keys. None should exist. If something seems to need one, stop and flag it.
+- When something is ambiguous: pick the lower-demand, lower-risk option, record it in `DECISIONS.md`, and continue.
+
+## Quality bar
+
+- Test on a real iPhone and Android device (installed to home screen), not only desktop.
+- Total app size under 2 MB, no runtime dependencies.
+- Fast to first interaction on a low-end phone. Now button responds in under 300 ms from cold launch.
+- Keyboard and screen-reader accessible. Colour is never the only signal (the 5-point scale also uses shape or position).
+- Every screen has one primary action and a visible way out.

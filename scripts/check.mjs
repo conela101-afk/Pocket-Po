@@ -74,7 +74,15 @@ for (const f of [...walk('js'), 'index.html', 'service-worker.js', ...walk('css'
 const sw = read('service-worker.js');
 const shell = [...sw.match(/const SHELL = \[([\s\S]*?)\];/)[1].matchAll(/'([^']+)'/g)].map((m) => m[1]);
 for (const p of shell) if (p !== './' && !existsSync(p)) fail(`service-worker.js: missing file ${p}`);
-for (const f of walk('js')) if (!shell.includes(f.replace(/\\/g, '/'))) fail(`service-worker.js: ${f} not precached`);
+const appFiles = [...walk('js'), ...walk('css'), ...walk('assets'), 'data/tools.json', 'data/tags.json', 'data/copy.json', 'data/defaults.json', 'manifest.webmanifest', 'index.html'];
+for (const f of appFiles) if (!shell.includes(f.replace(/\\/g, '/'))) fail(`service-worker.js: ${f} not precached`);
+if (/skipWaiting|clients\.claim/.test(sw.replace(/\/\/.*$/gm, ''))) fail('service-worker.js: must not force-activate (updates apply next launch)');
+
+// Content rules: no pain or shock techniques, no condition names in user-facing copy
+const forbidden = ['snap', 'rubber band', 'sour', 'hold ice', 'holding ice', 'ice cube', 'feel something', 'fast ', 'fasting', 'adhd', 'autis', 'depress', 'anxiety', 'ptsd', 'borderline', 'bipolar', 'diagnos'];
+const scanText = [read('data/copy.json'), read('data/tools.json'), read('data/defaults.json'), read('data/tags.json')].join('\n').toLowerCase()
+  .replace(copy.safety.cold.toLowerCase(), '').replace(/it is not evidence of any diagnosis/g, '');
+for (const w of forbidden) if (scanText.includes(w)) fail(`content rule: "${w.trim()}" found in user-facing data`);
 
 // Personal terms (local, untracked file)
 if (existsSync('data/banned-personal-terms.txt')) {

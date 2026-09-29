@@ -28,7 +28,7 @@ const toolRow = (id, opener) => {
 export async function home() {
   const block = timeBlock();
   const offers = (getDefaults().homeRotation[block] || []).slice(0, 3);
-  const plans = (await getAll('contingencies')).filter((p) => !p.archived);
+  const plans = (await getAll('contingencies').catch(() => [])).filter((p) => !p.archived);
   view().innerHTML = `
     ${poHTML(block === 'night' ? 'sleep' : 'sit')}
     <p class="center muted">${esc(t('home.offer'))}</p>

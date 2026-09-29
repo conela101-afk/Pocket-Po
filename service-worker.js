@@ -1,5 +1,6 @@
 // Cache-first app shell. Bump VERSION whenever any shell file changes.
-const VERSION = 'pocket-po-v4';
+// No skipWaiting/claim: a new version takes over on the next launch, never during a running tool.
+const VERSION = 'pocket-po-v5';
 const SHELL = [
   './', 'index.html', 'manifest.webmanifest',
   'css/app.css', 'css/po.css', 'css/themes.css',
@@ -11,14 +12,13 @@ const SHELL = [
 ];
 
 self.addEventListener('install', (e) => {
-  e.waitUntil(caches.open(VERSION).then((c) => c.addAll(SHELL)).then(() => self.skipWaiting()));
+  e.waitUntil(caches.open(VERSION).then((c) => c.addAll(SHELL)));
 });
 
 self.addEventListener('activate', (e) => {
   e.waitUntil(
     caches.keys()
       .then((keys) => Promise.all(keys.filter((k) => k !== VERSION).map((k) => caches.delete(k))))
-      .then(() => self.clients.claim())
   );
 });
 

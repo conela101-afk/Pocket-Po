@@ -19,3 +19,15 @@ Defaults picked without asking. Change any of them and tell Claude.
 - **Breathing end:** at the end of a cycle after the chosen length, Po yawns and settles, and the session logs as completed. Stopping early logs "exited early".
 - **Reduced motion:** Po holds one static pose and the ring jumps instead of sweeping. The In/Out/Hold word is always shown, so the cue never depends on motion or sound.
 - **Sound and vibration:** off by default. Sound is a single soft generated tone, no audio files.
+- **Cool, not painful:** the Now card reads "Cool water, 30 seconds" and cold tools are named "Cool…". Tool ids keep `cold-` so the fixed safety copy and code stay linked. `cold-hands` no longer suggests holding a cold item. TIPP is a gentle version and shows the cold-tool caution.
+- **Fixed safety copy** (SPEC §11) still mentions a wrapped ice pack as written; left as specified because it warns against ice on skin.
+- **Silent storage failures:** logging is wrapped so a failed write never interrupts a tool or shows an error.
+- **Updates:** the service worker no longer skips waiting or claims clients, so a new version takes over on the next launch only.
+- **Emoji:** the three Now card icons are the only emoji; none in tool instructions.
+- **Real-device testing:** I can only test headless here. iPhone and Android home-screen tests need you; I'll list what to try at each milestone.
+
+## Licences
+All art (icons, Po spritesheet) is generated in this repo by `tools-dev/`. Fonts are system fonts. No third-party assets or code.
+
+## Proposed
+(Ideas not in `SPEC.md` go here, not in code.)

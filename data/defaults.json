@@ -32,15 +32,15 @@
  },
  "nowCards": {
   "cold-face": {
-   "icon": "\u2744",
-   "label": "Cold water, 30 seconds"
+   "icon": "❄",
+   "label": "Cool water, 30 seconds"
   },
   "ext-exhale": {
-   "icon": "\u3030",
+   "icon": "〰",
    "label": "Slow breath out"
   },
   "pet-po": {
-   "icon": "\u2661",
+   "icon": "♡",
    "label": "Pet Po"
   }
  }

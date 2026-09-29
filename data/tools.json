@@ -157,7 +157,7 @@
   },
   {
    "id": "cold-face",
-   "name": "Cold on your face",
+   "name": "Cool on your face",
    "category": "body",
    "durationOptions": [
     30
@@ -166,7 +166,7 @@
     "now",
     "library"
    ],
-   "prompt": "Cool water on your face for about 30 seconds.",
+   "prompt": "Cool water on your face for about 30 seconds. Cool, not painful.",
    "caution": "cold",
    "flags": [
     "cold"
@@ -174,7 +174,7 @@
   },
   {
    "id": "cold-hands",
-   "name": "Cold hands",
+   "name": "Cool hands",
    "category": "body",
    "durationOptions": [
     30,
@@ -184,7 +184,7 @@
     "now",
     "library"
    ],
-   "prompt": "Hold your hands under the cool tap, or hold something cold.",
+   "prompt": "Hold your hands under the cool tap. Cool, not painful.",
    "caution": "cold",
    "flags": [
     "cold"
@@ -520,8 +520,11 @@
    "modes": [
     "library"
    ],
-   "prompt": "Cool your body, move a little, slow your breath. Pick what suits you.",
-   "flags": []
+   "prompt": "A gentle version: cool water on your face, a little easy movement, slow breathing. Pick what suits you.",
+   "flags": [
+    "cold"
+   ],
+   "caution": "cold"
   },
   {
    "id": "self-soothe-senses",
@@ -585,7 +588,7 @@
    "modes": [
     "library"
    ],
-   "prompt": "Child safe in a set spot, water, breathe, cold, return. Five minutes.",
+   "prompt": "Child safe in a set spot, water, breathe, cool water, return. Five minutes.",
    "flags": []
   },
   {

@@ -5,20 +5,11 @@ import { poHTML } from './po.js';
 import { doHandoff, handoffMessage } from './handoff.js';
 import { runTool } from './tools/run.js';
 import { go } from './router.js';
+import { toast } from './tools/common.js';
 
 const esc = (s) => String(s).replace(/[&<>"]/g, (c) => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;' }[c]));
 const view = () => document.getElementById('view');
 const crisis = () => `<p class="crisis" role="note">${esc(t('safety.crisis'))}</p>`;
-
-export function toast(msg) {
-  const el = document.createElement('div');
-  el.className = 'notice';
-  el.setAttribute('role', 'status');
-  el.style.cssText = 'position:fixed;left:1rem;right:1rem;bottom:150px;z-index:30;';
-  el.textContent = msg;
-  document.body.append(el);
-  setTimeout(() => el.remove(), 3000);
-}
 
 const toolRow = (id, opener) => {
   const tool = getTool(id);
@@ -33,7 +24,7 @@ export async function home() {
     ${poHTML(block === 'night' ? 'sleep' : 'sit')}
     <p class="center muted">${esc(t('home.offer'))}</p>
     <div class="stack">${offers.map((id) => toolRow(id, 'poSuggestion')).join('')}</div>
-    ${plans.length ? `<h2>${esc(t('home.plans'))}</h2><div class="stack"><a class="card" href="#/more">${esc(t('home.plans'))}</a></div>` : ''}`;
+    ${plans.length ? `<h2>${esc(t('home.plans'))}</h2><div class="stack"><a class="card" href="#/tool/contingency-builder/browse">${esc(t('home.plans'))}</a></div>` : ''}`;
 }
 
 const nowCard = (id) => {
@@ -56,15 +47,15 @@ export function now() {
   }
 }
 
-export function tool(id, opener = 'browse') {
-  const mode = opener === 'nowButton' ? 'now' : (getTool(id)?.modes.includes('build') && !getTool(id)?.modes.includes('library') ? 'build' : 'library');
+export function tool(id, opener = 'browse', asMode) {
+  const mode = opener === 'nowButton' ? 'now' : asMode === 'build' || getTool(id)?.category === 'build' ? 'build' : 'library';
   runTool(view(), id, mode, opener);
 }
 
 export function build() {
   const list = tools().filter((x) => x.modes.includes('build'));
   view().innerHTML = `<h1>${esc(t('nav.build'))}</h1><p class="muted">${esc(t('build.intro'))}</p>
-    <div class="stack">${list.map((x) => `<a class="card" href="#/tool/${x.id}/browse">${esc(x.name)}</a>`).join('')}</div>`;
+    <div class="stack">${list.map((x) => `<a class="card" href="#/tool/${x.id}/browse/build">${esc(x.name)}</a>`).join('')}</div>`;
 }
 
 export function library() {
@@ -91,7 +82,7 @@ export function library() {
 
 export function more() {
   const it = t('more.items');
-  const live = { setup: '#/setup/1', settings: '#/settings', safety: '#/safety' };
+  const live = { setup: '#/setup/1', notes: '#/tool/evidence-bank/browse', plans: '#/tool/contingency-builder/browse', parking: '#/tool/parking-lot/browse', prep: '#/tool/appointment-prep/browse', settings: '#/settings', safety: '#/safety' };
   const rows = Object.entries(it).map(([k, label]) => live[k]
     ? `<a class="card" href="${live[k]}">${esc(label)}</a>`
     : `<div class="card" aria-disabled="true"><span>${esc(label)}</span><span class="muted">${esc(t('more.soon'))}</span></div>`);

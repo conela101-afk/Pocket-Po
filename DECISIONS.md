@@ -41,3 +41,21 @@ All art (icons, Po spritesheet) is generated in this repo by `tools-dev/`. Fonts
 - **Pattern trace:** the trail fades after a couple of seconds so nothing accumulates.
 - **Po look:** Standard, Clearer (more contrast) or Softer (less saturated), shown on light and dark backgrounds. This is a simple check for legibility, not a colour-vision test. The chosen look shows a tick as well as a border, so colour is never the only signal.
 - **Licence:** MIT, copyright holder is the repo's GitHub username.
+
+## Milestone 4
+- **Every tool has a real screen.** `data/tools.json` gives each tool a `run` type (breathing, cool, guided, timed, checklist, pulse, list, plans, and so on) and its steps, so wording can be edited without touching code. `npm run check` fails if a tool has no valid type or is missing its steps.
+- **Guided tools:** one step at a time with a Next button. A few (tense and release) move on by themselves after 12 seconds. No step counters and no progress bars. Timed tools (urge surfing, three-minute anchor) rotate their prompts across the chosen time and end softly.
+- **External anchors only:** urge surfing rests the eyes on the room rather than asking where the urge is felt, in line with the no-interoception rule.
+- **Content screens** (evidence bank, parking lot, appointment prep, notes for later, plans, stims, handoff, name it, pros and cons) have one Back button. Leaving logs a neutral completed visit, since there is nothing to finish and it would otherwise always count as an early exit.
+- **Where content lives:** entries are in IndexedDB (`evidence`, `parkingLot`, `prepPoints`, `contingencies`). "Note for later" shares the `evidence` store with a `kind` field, so no schema change was needed. Stims are in small settings on the device. The app never reads or interprets any of it.
+- **Name it** and **Pros and cons** save nothing, on purpose. Saving the chosen word is under Proposed.
+- **Plans:** "If … then …" with a free-text trigger (suggestions from the trigger tags), free text or a linked tool, and Archive/Restore. Tapping Start on a linked plan opens that tool with the opener logged as `plan`. Home shows one quiet "Your plans" card only when a plan exists.
+- **Appointment prep:** points stay until removed. "Raised" only greys a point and moves it down; nothing is overdue.
+- **Build** lists exactly the six Build tools from SPEC §5. Other tools are Library and Now only.
+- **Absorb games:** bubble pop, sort shapes and kaleidoscope end softly at 3 minutes like the others. Sort shapes ignores a wrong tap quietly, with no message. Under reduced motion bubbles appear in place instead of rising.
+- **Leaving by the nav bar** during a tool now logs a neutral early exit instead of nothing.
+- **Butterfly hug:** two dots take turns each second, with the words always shown. The dots change state rather than move, so it works with reduced motion.
+
+## Proposed
+- Optionally save the word chosen in Name it, so it can be attached to a session.
+- Let a plan start its linked tool straight away, skipping the start screen on breathing tools.

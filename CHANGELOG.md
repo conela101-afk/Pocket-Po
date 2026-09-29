@@ -11,3 +11,6 @@ New content, data and update rules added to `CLAUDE.md`. Cool-not-painful wordin
 
 ## 0.3.0 — Now mode
 First-run setup, Quiet card, cool-water screens and two absorb tools with a soft end. MIT licence added.
+
+## 0.4.0 — Library and Build
+All 47 tools now have real screens. Adds if-then plans, parking lot, evidence bank, appointment prep, stims, three absorb games and the six Build practices.

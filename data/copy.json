@@ -12,7 +12,8 @@
  "home": {
   "offer": "One option:",
   "plans": "Your plans",
-  "noPlans": "Plans you write will wait here."
+  "noPlans": "Plans you write will wait here.",
+  "plansLink": "Your plans"
  },
  "now": {
   "quiet": "Quiet",
@@ -53,7 +54,8 @@
   "settled": "Po is settled. Stay as long as you like.",
   "coolEnd": "That's the time. Stop whenever you like.",
   "petHint": "Stroke Po slowly.",
-  "traceHint": "Follow the line with your finger."
+  "traceHint": "Follow the line with your finger.",
+  "pulse": "Tap each shoulder, one side and then the other."
  },
  "settings": {
   "title": "Settings",
@@ -122,5 +124,108 @@
    "title": "Movement and sound",
    "intro": "Both can be changed any time in Settings."
   }
+ },
+ "common": {
+  "next": "Next",
+  "done": "Done",
+  "add": "Add",
+  "save": "Save",
+  "remove": "Remove",
+  "back": "Back",
+  "new": "New",
+  "start": "Start",
+  "archive": "Archive",
+  "restore": "Restore",
+  "archived": "Archived"
+ },
+ "lists": {
+  "evidence-bank": {
+   "intro": "Things that went well, or that others have said about you. Add one whenever you like.",
+   "placeholder": "Something that went well",
+   "empty": "Nothing here yet. That's fine."
+  },
+  "parking-lot": {
+   "intro": "Write a thought that isn't settled and put it here. It will wait.",
+   "placeholder": "A thought to park",
+   "empty": "Nothing parked.",
+   "added": "Parked. It can wait."
+  },
+  "appointment-prep": {
+   "intro": "Points to raise at your next session. They stay here until you remove them.",
+   "placeholder": "A point to raise",
+   "empty": "No points yet.",
+   "toggle": "Raised"
+  },
+  "repair-note": {
+   "intro": "An optional note for another day.",
+   "placeholder": "A note for later",
+   "empty": "No notes yet."
+  }
+ },
+ "plans": {
+  "title": "If-then plans",
+  "intro": "If this happens, then I could do that.",
+  "if": "If",
+  "then": "then",
+  "ifPlaceholder": "this happens",
+  "thenPlaceholder": "I could...",
+  "tool": "Or start a tool",
+  "noTool": "No tool, just my words",
+  "empty": "No plans yet.",
+  "start": "Start"
+ },
+ "nameIt": {
+  "intro": "If you like, pick a word, or write your own. Nothing is saved.",
+  "own": "Or your own word",
+  "words": [
+   "calm",
+   "tense",
+   "tired",
+   "fuzzy",
+   "sad",
+   "cross",
+   "wired",
+   "flat",
+   "worried",
+   "overloaded",
+   "numb",
+   "okay",
+   "hopeful",
+   "restless"
+  ]
+ },
+ "pros": {
+  "pros": "Pros",
+  "cons": "Cons",
+  "intro": "Lay out both sides. Nothing here is saved.",
+  "placeholder": "One per line"
+ },
+ "stims": {
+  "intro": "Your own movements and textures that feel good.",
+  "placeholder": "Add your own",
+  "ideas": "Po's ideas",
+  "empty": "Nothing yet.",
+  "examples": [
+   "Rub a smooth stone or soft fabric",
+   "Rock gently",
+   "Hum a low note",
+   "Squeeze a soft toy",
+   "Tap a slow rhythm",
+   "Stretch and release your fingers"
+  ]
+ },
+ "handoffTool": {
+  "intro": "This sends your message through your messaging app. You choose who receives it."
+ },
+ "play": {
+  "bubbles": "Tap a bubble to pop it.",
+  "shapes": "Tap the place each shape belongs.",
+  "kaleido": "Watch the pattern turn. Tap for a new one.",
+  "circle": "Circle",
+  "square": "Square",
+  "triangle": "Triangle"
+ },
+ "checklist": {
+  "intro": "Take whichever you like."
  }
 }

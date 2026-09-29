@@ -54,6 +54,8 @@ function localISO(d) {
   return `${d.getFullYear()}-${p(d.getMonth() + 1)}-${p(d.getDate())}T${p(d.getHours())}:${p(d.getMinutes())}:${p(d.getSeconds())}${sign}${p(Math.floor(Math.abs(off) / 60))}:${p(Math.abs(off) % 60)}`;
 }
 
+export const nowISO = () => localISO(new Date());
+
 /** Records what the app can observe with no input from the user. */
 async function logSessionUnsafe({ tool, mode, opener, startedAt, completed, exitedEarly }) {
   const start = new Date(startedAt);

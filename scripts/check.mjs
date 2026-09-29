@@ -23,6 +23,19 @@ for (const x of toolsData.tools) {
   if (!x.modes?.length || !x.prompt) fail(`tools.json: ${x.id} missing modes or prompt`);
 }
 
+// Every tool has a screen type, and the data it needs
+const RUN = new Set(['breathing', 'cool', 'pet', 'trace', 'quiet', 'guided', 'timed', 'checklist', 'pulse', 'bubbles', 'shapes', 'kaleido', 'list', 'plans', 'nameit', 'pros', 'handoff', 'stims']);
+const runnersSrc = read('js/tools/run.js');
+for (const x of toolsData.tools) {
+  if (!RUN.has(x.run)) fail(`tools.json: ${x.id} has no valid run type`);
+  else if (!new RegExp(`\\b${x.run}:`).test(runnersSrc)) fail(`run.js: no runner for type ${x.run}`);
+  if (['guided', 'timed', 'checklist'].includes(x.run) && !x.steps?.length) fail(`tools.json: ${x.id} needs steps`);
+  if (x.run === 'list' && !copy.lists?.[x.id]) fail(`copy.json: lists.${x.id} missing`);
+  if (x.run === 'breathing' && !read('js/tools/breathe.js').includes(`'${x.pattern || x.id}'`) && !read('js/tools/breathe.js').includes(`${x.pattern || x.id}:`)) fail(`breathe.js: no pattern for ${x.id}`);
+  if (x.category === 'build' && (x.modes.length !== 1 || x.modes[0] !== 'build')) fail(`tools.json: build tool ${x.id} must be build-only`);
+  if (x.category !== 'build' && x.modes.includes('build')) fail(`tools.json: ${x.id} is not a Build tool (SPEC §5)`);
+}
+
 // Tool ids referenced elsewhere must exist
 const refs = [
   ...defaults.defaults.now, ...Object.values(defaults.homeRotation).flat(), ...Object.keys(defaults.nowCards)

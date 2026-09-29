@@ -78,7 +78,7 @@ export function runBreathing(view, tool, mode, opener) {
   };
 
   const run = () => {
-    const phases = phasesFor(tool.id, { noHolds: opts.noHolds, comfort: getSetting('comfortExhale') });
+    const phases = phasesFor(tool.pattern || tool.id, { noHolds: opts.noHolds, comfort: getSetting('comfortExhale') });
     const total = opts.dur * 1000;
     const startedAt = Date.now();
     const C = 2 * Math.PI * 114;
@@ -103,6 +103,11 @@ export function runBreathing(view, tool, mode, opener) {
       view.querySelector('.stopbar').innerHTML = `<a class="btn primary" href="#${back}">${esc(t('now.back'))}</a>`;
     };
     view.querySelector('#stop').onclick = () => finish(false);
+    addEventListener('hashchange', () => {  // leaving by another route: neutral early exit, no redirect
+      if (ended) return;
+      ended = true; clearTimers();
+      logSession({ tool, mode, opener, startedAt, completed: false, exitedEarly: true });
+    }, { once: true });
 
     const step = () => {
       if (ended) return;

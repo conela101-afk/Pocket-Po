@@ -52,13 +52,13 @@
     300
    ],
    "modes": [
-    "library",
-    "build"
+    "library"
    ],
    "prompt": "Breathe in 4, hold 4, out 4, hold 4. A no-holds version is one tap away.",
    "flags": [
     "hasHoldVariant"
-   ]
+   ],
+   "run": "breathing"
   },
   {
    "id": "cyclic-sigh",
@@ -70,11 +70,11 @@
     300
    ],
    "modes": [
-    "library",
-    "build"
+    "library"
    ],
    "prompt": "Two breaths in through the nose, one long slow breath out through the mouth.",
-   "flags": []
+   "flags": [],
+   "run": "breathing"
   },
   {
    "id": "paced-55",
@@ -85,11 +85,11 @@
     300
    ],
    "modes": [
-    "library",
-    "build"
+    "library"
    ],
    "prompt": "In and out at a gentle pace with Po. About 5 to 6 seconds each way.",
-   "flags": []
+   "flags": [],
+   "run": "breathing"
   },
   {
    "id": "ext-exhale",
@@ -102,11 +102,11 @@
    ],
    "modes": [
     "now",
-    "library",
-    "build"
+    "library"
    ],
    "prompt": "Breathe in for 4, out for 6. Po breathes with you.",
-   "flags": []
+   "flags": [],
+   "run": "breathing"
   },
   {
    "id": "hum-exhale",
@@ -117,11 +117,11 @@
     180
    ],
    "modes": [
-    "library",
-    "build"
+    "library"
    ],
    "prompt": "Breathe in for 4, then hum the breath out.",
-   "flags": []
+   "flags": [],
+   "run": "breathing"
   },
   {
    "id": "pursed-lip",
@@ -132,11 +132,11 @@
     180
    ],
    "modes": [
-    "library",
-    "build"
+    "library"
    ],
    "prompt": "In for 2, out for 4 through pursed lips.",
-   "flags": []
+   "flags": [],
+   "run": "breathing"
   },
   {
    "id": "478",
@@ -153,7 +153,8 @@
    "flags": [
     "optional",
     "hasHold"
-   ]
+   ],
+   "run": "breathing"
   },
   {
    "id": "cold-face",
@@ -170,7 +171,8 @@
    "caution": "cold",
    "flags": [
     "cold"
-   ]
+   ],
+   "run": "cool"
   },
   {
    "id": "cold-hands",
@@ -188,7 +190,8 @@
    "caution": "cold",
    "flags": [
     "cold"
-   ]
+   ],
+   "run": "cool"
   },
   {
    "id": "warmth",
@@ -203,7 +206,13 @@
     "library"
    ],
    "prompt": "A warm drink, or warm hands around something warm.",
-   "flags": []
+   "flags": [],
+   "run": "guided",
+   "steps": [
+    "If you like, make a warm drink, or hold something warm.",
+    "Let your hands wrap around the warmth.",
+    "Stay with it for as long as you like."
+   ]
   },
   {
    "id": "wall-push",
@@ -218,7 +227,14 @@
     "library"
    ],
    "prompt": "Press your hands into a wall and push, then let go.",
-   "flags": []
+   "flags": [],
+   "run": "guided",
+   "steps": [
+    "Stand facing a wall, an arm's length away.",
+    "Put your palms flat on the wall and push, gently or firmly, whichever feels right.",
+    "Hold the push for a few seconds, then let your arms drop.",
+    "Repeat if you like."
+   ]
   },
   {
    "id": "self-squeeze",
@@ -233,7 +249,14 @@
     "library"
    ],
    "prompt": "Wrap your arms around yourself and squeeze gently.",
-   "flags": []
+   "flags": [],
+   "run": "guided",
+   "steps": [
+    "Wrap your arms around yourself.",
+    "Squeeze as firmly as feels comfortable, never painful.",
+    "Hold for a few seconds, then loosen.",
+    "Repeat if you like."
+   ]
   },
   {
    "id": "tense-release",
@@ -249,7 +272,17 @@
    "prompt": "Follow the prompts through each muscle group, tense then let go.",
    "flags": [
     "externalPrompts"
-   ]
+   ],
+   "run": "guided",
+   "steps": [
+    "Keep breathing normally throughout. Tighten only as much as is comfortable.",
+    "Hands: make fists, then let go.",
+    "Arms: bend and tighten, then let go.",
+    "Shoulders: lift towards your ears, then let go.",
+    "Face: scrunch gently, then let go.",
+    "Legs: press your feet into the floor, then let go."
+   ],
+   "stepSec": 12
   },
   {
    "id": "shake-out",
@@ -264,7 +297,14 @@
     "library"
    ],
    "prompt": "Shake your hands, arms and legs loose.",
-   "flags": []
+   "flags": [],
+   "run": "guided",
+   "steps": [
+    "Stand or sit, whichever suits.",
+    "Shake out your hands, loosely.",
+    "Shake your arms, then your legs if you like.",
+    "Let everything go still. Look around the room."
+   ]
   },
   {
    "id": "butterfly-hug",
@@ -279,7 +319,8 @@
     "library"
    ],
    "prompt": "Cross your arms and tap each shoulder, one side then the other.",
-   "flags": []
+   "flags": [],
+   "run": "pulse"
   },
   {
    "id": "stim-menu",
@@ -296,7 +337,8 @@
    "prompt": "Your own list of movements and textures that feel good.",
    "flags": [
     "userList"
-   ]
+   ],
+   "run": "stims"
   },
   {
    "id": "room-orient",
@@ -313,6 +355,14 @@
    "prompt": "Slowly look around and name the colours you see.",
    "flags": [
     "avoidsInteroception"
+   ],
+   "run": "guided",
+   "steps": [
+    "Let your eyes move slowly around the room.",
+    "Find something blue, or the nearest colour to it.",
+    "Find something round.",
+    "Find something soft.",
+    "Let your eyes rest on whichever you liked best."
    ]
   },
   {
@@ -330,6 +380,13 @@
    "prompt": "Listen and notice the sounds near, then far.",
    "flags": [
     "avoidsInteroception"
+   ],
+   "run": "guided",
+   "steps": [
+    "Listen for the sounds nearest to you.",
+    "Now the sounds a little further away.",
+    "Now the furthest sounds you can find.",
+    "Let the sounds come and go."
    ]
   },
   {
@@ -347,6 +404,13 @@
    "prompt": "Pick something nearby and describe it in detail.",
    "flags": [
     "avoidsInteroception"
+   ],
+   "run": "guided",
+   "steps": [
+    "Pick an object near you.",
+    "Say or think its colour and shape.",
+    "Say or think how it might feel to touch.",
+    "Say or think what it is for."
    ]
   },
   {
@@ -362,6 +426,14 @@
    "prompt": "Five things you see, four you touch, three you hear, two you smell, one you taste.",
    "flags": [
     "optional"
+   ],
+   "run": "guided",
+   "steps": [
+    "Five things you can see.",
+    "Four things you can touch.",
+    "Three things you can hear.",
+    "Two things you can smell, or like the smell of.",
+    "One thing you can taste, or a taste you like."
    ]
   },
   {
@@ -378,7 +450,8 @@
    "prompt": "Stroke Po slowly. Po purrs.",
    "flags": [
     "softEnd"
-   ]
+   ],
+   "run": "pet"
   },
   {
    "id": "pattern-trace",
@@ -394,7 +467,8 @@
    "prompt": "Trace the pattern slowly with your finger.",
    "flags": [
     "softEnd"
-   ]
+   ],
+   "run": "trace"
   },
   {
    "id": "bubble-pop",
@@ -409,7 +483,8 @@
    "prompt": "Pop bubbles as they drift by.",
    "flags": [
     "softEnd"
-   ]
+   ],
+   "run": "bubbles"
   },
   {
    "id": "sort-shapes",
@@ -424,7 +499,8 @@
    "prompt": "Sort the shapes, no score.",
    "flags": [
     "softEnd"
-   ]
+   ],
+   "run": "shapes"
   },
   {
    "id": "kaleidoscope",
@@ -439,7 +515,8 @@
    "prompt": "Watch the pattern turn slowly.",
    "flags": [
     "softEnd"
-   ]
+   ],
+   "run": "kaleido"
   },
   {
    "id": "name-it",
@@ -449,11 +526,11 @@
     60
    ],
    "modes": [
-    "library",
-    "build"
+    "library"
    ],
    "prompt": "Pick one word for how it feels, from a short list or your own.",
-   "flags": []
+   "flags": [],
+   "run": "nameit"
   },
   {
    "id": "defusion",
@@ -467,7 +544,15 @@
     "library"
    ],
    "prompt": "Try: \"I'm having the thought that...\"",
-   "flags": []
+   "flags": [],
+   "run": "guided",
+   "steps": [
+    "Think of the thought that is loudest right now.",
+    "Say it as: \"I'm having the thought that...\" and then the thought.",
+    "Try again with: \"I notice I'm having the thought that...\"",
+    "Let the thought be there, like a cloud passing or a sign on a wall.",
+    "You don't have to argue with it or agree with it."
+   ]
   },
   {
    "id": "demand-choice",
@@ -480,7 +565,15 @@
     "library"
    ],
    "prompt": "What's the demand here, and what part of it is yours to choose?",
-   "flags": []
+   "flags": [],
+   "run": "guided",
+   "steps": [
+    "What is the demand here?",
+    "Who or what is it coming from?",
+    "Which part of it is yours to choose?",
+    "Which part isn't?",
+    "One small choice you could make: what is it?"
+   ]
   },
   {
    "id": "contingency-builder",
@@ -490,11 +583,11 @@
     180
    ],
    "modes": [
-    "library",
-    "build"
+    "library"
    ],
    "prompt": "If this happens, then I could do that.",
-   "flags": []
+   "flags": [],
+   "run": "plans"
   },
   {
    "id": "parking-lot",
@@ -508,7 +601,8 @@
     "library"
    ],
    "prompt": "Write down an unresolved thought and put it away for now.",
-   "flags": []
+   "flags": [],
+   "run": "list"
   },
   {
    "id": "tipp",
@@ -524,7 +618,15 @@
    "flags": [
     "cold"
    ],
-   "caution": "cold"
+   "caution": "cold",
+   "run": "guided",
+   "steps": [
+    "A gentle version. Take whichever parts suit you and skip the rest.",
+    "Cool water on your face or hands. Cool, not painful. The i button has a safety note.",
+    "Some easy movement: walk around the room, or shake out your arms.",
+    "Slow your breathing, with a longer breath out than in.",
+    "Rest for a moment."
+   ]
   },
   {
    "id": "self-soothe-senses",
@@ -537,7 +639,15 @@
     "library"
    ],
    "prompt": "One thing to see, hear, smell, taste and touch that feels kind.",
-   "flags": []
+   "flags": [],
+   "run": "guided",
+   "steps": [
+    "Something to look at that you like.",
+    "Something to listen to that feels kind.",
+    "A smell you like, if there's one nearby.",
+    "Something small to taste, if you'd like.",
+    "Something soft or warm to touch."
+   ]
   },
   {
    "id": "radical-acceptance",
@@ -550,7 +660,14 @@
     "library"
    ],
    "prompt": "This is how things are right now. You could rest with that.",
-   "flags": []
+   "flags": [],
+   "run": "guided",
+   "steps": [
+    "This is how things are right now.",
+    "You could let that be true for a moment, without needing to like it.",
+    "You could loosen something: your jaw, your hands, your shoulders.",
+    "Rest here for as long as you like."
+   ]
   },
   {
    "id": "pros-cons",
@@ -563,7 +680,8 @@
     "library"
    ],
    "prompt": "Lay out both sides of an urge, then choose in your own time.",
-   "flags": []
+   "flags": [],
+   "run": "pros"
   },
   {
    "id": "handoff",
@@ -576,7 +694,8 @@
     "library"
    ],
    "prompt": "Send a pre-written message to someone who can take over.",
-   "flags": []
+   "flags": [],
+   "run": "handoff"
   },
   {
    "id": "caregiver-reset",
@@ -589,7 +708,15 @@
     "library"
    ],
    "prompt": "Child safe in a set spot, water, breathe, cool water, return. Five minutes.",
-   "flags": []
+   "flags": [],
+   "run": "checklist",
+   "steps": [
+    "The child is safe in a set spot.",
+    "Water for you.",
+    "Slow breaths, longer out than in.",
+    "Cool water on your face or hands.",
+    "Return when you're ready."
+   ]
   },
   {
    "id": "after-checklist",
@@ -602,7 +729,14 @@
     "library"
    ],
    "prompt": "Water, food, quiet, wash your face. Take whichever you like.",
-   "flags": []
+   "flags": [],
+   "run": "checklist",
+   "steps": [
+    "Water",
+    "Food, if you can",
+    "Somewhere quiet",
+    "Wash your face"
+   ]
   },
   {
    "id": "repair-note",
@@ -615,7 +749,8 @@
     "library"
    ],
    "prompt": "Leave a note for another day, if you like.",
-   "flags": []
+   "flags": [],
+   "run": "list"
   },
   {
    "id": "evidence-bank",
@@ -629,7 +764,8 @@
     "library"
    ],
    "prompt": "Things that went well, or that others have said about you.",
-   "flags": []
+   "flags": [],
+   "run": "list"
   },
   {
    "id": "appointment-prep",
@@ -643,7 +779,8 @@
     "library"
    ],
    "prompt": "Jot points to raise at your next session.",
-   "flags": []
+   "flags": [],
+   "run": "list"
   },
   {
    "id": "build-cold-low",
@@ -660,7 +797,8 @@
    "caution": "cold",
    "flags": [
     "cold"
-   ]
+   ],
+   "run": "cool"
   },
   {
    "id": "build-exhale-3",
@@ -673,7 +811,9 @@
     "build"
    ],
    "prompt": "Three minutes of breathing out longer than in.",
-   "flags": []
+   "flags": [],
+   "run": "breathing",
+   "pattern": "ext-exhale"
   },
   {
    "id": "build-urge-surf",
@@ -686,7 +826,15 @@
     "build"
    ],
    "prompt": "Sit with a mild urge for two minutes before acting. Po sits alongside.",
-   "flags": []
+   "flags": [],
+   "run": "timed",
+   "steps": [
+    "Notice the urge. You don't have to act on it yet.",
+    "Rest your eyes on something in the room while it is there.",
+    "Let it rise. Po is sitting alongside you.",
+    "Let it ease in its own time.",
+    "You can stay a little longer, or stop now."
+   ]
   },
   {
    "id": "build-anchor-3",
@@ -701,6 +849,15 @@
    "prompt": "Rest your attention on sounds, textures or one thing you can see.",
    "flags": [
     "avoidsInteroception"
+   ],
+   "run": "timed",
+   "steps": [
+    "Listen to the sounds around you.",
+    "Pick one sound and stay with it.",
+    "Now look at one thing. Notice its edges and colours.",
+    "Touch something near you. Notice its surface.",
+    "Let your attention move between sound, sight and touch.",
+    "Rest your attention on whichever you like best."
    ]
   },
   {
@@ -714,7 +871,9 @@
     "build"
    ],
    "prompt": "One if-then plan, in your words.",
-   "flags": []
+   "flags": [],
+   "run": "plans",
+   "startForm": true
   },
   {
    "id": "build-name-it",
@@ -727,7 +886,8 @@
     "build"
    ],
    "prompt": "Give one feeling a name.",
-   "flags": []
+   "flags": [],
+   "run": "nameit"
   },
   {
    "id": "quiet",
@@ -740,7 +900,8 @@
    "prompt": "The screen dims. Po sleeps. Nothing is asked.",
    "flags": [
     "quiet"
-   ]
+   ],
+   "run": "quiet"
   }
  ]
 }

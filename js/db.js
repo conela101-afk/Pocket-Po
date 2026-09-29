@@ -1,4 +1,6 @@
 // IndexedDB: session logs and user content. Nothing leaves the device.
+import { CONTENT_RUNS, OPENED_UNDER_SEC } from './classify.js';
+
 const NAME = 'pocketpo';
 // Schema changes: bump VERSION and add a MIGRATIONS entry. Migrations only ever add; they never drop or rewrite records.
 const VERSION = 1;
@@ -30,6 +32,29 @@ async function run(store, mode, fn) {
     const req = fn(tx.objectStore(store));
     tx.oncomplete = () => resolve(req.result);
     tx.onerror = () => reject(tx.error);
+  });
+}
+
+/** Everything in every store, for a backup. */
+export async function dumpAll() {
+  const out = {};
+  for (const s of STORES) out[s] = await getAll(s);
+  return out;
+}
+
+/** Replaces every store with the given records in ONE transaction: it all happens or none of it does. */
+export async function replaceAll(stores) {
+  const db = await open();
+  await new Promise((resolve, reject) => {
+    const tx = db.transaction(STORES, 'readwrite');
+    tx.oncomplete = () => resolve();
+    tx.onerror = () => reject(tx.error);
+    tx.onabort = () => reject(tx.error || new Error('aborted'));
+    for (const s of STORES) {
+      const os = tx.objectStore(s);
+      os.clear();
+      for (const r of stores[s] || []) os.put(r);
+    }
   });
 }
 
@@ -65,11 +90,14 @@ async function logSessionUnsafe({ tool, mode, opener, startedAt, completed, exit
     const prev = all.filter((s) => s.mode === 'now').sort((a, b) => b.ts.localeCompare(a.ts))[0];
     if (prev) gap = Math.round((start - new Date(prev.ts)) / 1000);
   }
+  const durationSec = Math.round((Date.now() - startedAt) / 1000);
+  // A very quick exit is a look, not an early exit. Content tools are never early exits.
+  const opened = !completed && !!exitedEarly && durationSec < OPENED_UNDER_SEC;
   const rec = {
     ts: localISO(start), dow: start.getDay(), block: timeBlock(start), mode,
     toolId: tool.id, category: tool.category, opener,
-    durationSec: Math.round((Date.now() - startedAt) / 1000),
-    completed: !!completed, exitedEarly: !!exitedEarly,
+    durationSec, completed: !!completed, exitedEarly: !!exitedEarly && !opened, opened,
+    contentTool: CONTENT_RUNS.includes(tool.run),
     gapSincePrevNowSec: gap, handoffPressed: false,
     ratingBefore, ratingAfter: null, helped: null,
     triggers: [], context: [], body: [], note: null, voiceNoteId: null

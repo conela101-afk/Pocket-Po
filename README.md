@@ -9,9 +9,9 @@ It is built to ask as little of you as possible. There are no streaks, no remind
 - **Now:** one tap to a small set of pre-chosen tools, with no menus and no questions.
 - **Build:** short practices for calmer moments, if you like.
 - **Library:** breathing, body, grounding, absorbing and thinking tools to browse.
-- **More:** settings, safety information, your notes, plans, appointment points and tags, and, in time, an optional export.
+- **More:** settings, safety information, your notes, plans, appointment points and tags, and an optional export you save or print yourself.
 
-Pocket Po is a work in progress. Export and backup are still to come.
+Pocket Po is a work in progress.
 
 ## Install it to your home screen
 

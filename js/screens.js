@@ -82,7 +82,7 @@ export function library() {
 
 export function more() {
   const it = t('more.items');
-  const live = { setup: '#/setup/1', notes: '#/tool/evidence-bank/browse', plans: '#/tool/contingency-builder/browse', parking: '#/tool/parking-lot/browse', prep: '#/tool/appointment-prep/browse', tags: '#/tags', settings: '#/settings', safety: '#/safety' };
+  const live = { setup: '#/setup/1', notes: '#/tool/evidence-bank/browse', plans: '#/tool/contingency-builder/browse', parking: '#/tool/parking-lot/browse', prep: '#/tool/appointment-prep/browse', tags: '#/tags', export: '#/export', settings: '#/settings', safety: '#/safety' };
   const rows = Object.entries(it).map(([k, label]) => live[k]
     ? `<a class="card" href="${live[k]}">${esc(label)}</a>`
     : `<div class="card" aria-disabled="true"><span>${esc(label)}</span><span class="muted">${esc(t('more.soon'))}</span></div>`);

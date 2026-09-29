@@ -4,7 +4,7 @@
   "version": "0.1.0",
   "type": "module",
   "scripts": {
-    "check": "node scripts/check.mjs",
+    "check": "node scripts/check.mjs && node scripts/test-export.mjs",
     "serve": "python3 -m http.server 8080"
   }
 }

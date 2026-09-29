@@ -24,7 +24,7 @@ The main risk is that the app itself becomes a demand. Prescribed coping tools o
 10. **Local only.** All data stays on the device. No analytics, no accounts, no third-party scripts, no network calls at runtime other than fetching the app's own files. No fonts from a CDN.
 11. **Safety copy is fixed.** The cold-water caution and the crisis footer (see `SPEC.md` §11) must appear exactly as specified and must not be removed, softened or hidden.
 12. **Sensory-safe.** Reduce-motion toggle (respect `prefers-reduced-motion` by default), sound off by default, no flashing, no sudden loud audio, no full-white flashes, low-contrast-glare palette with a dark mode, large touch targets (≥ 56px), short text.
-13. **Escape hatch everywhere.** Every tool has a large, always-visible Back or Stop that exits instantly without penalty and logs the session as "exited early" (a neutral fact, not a failure).
+13. **Escape hatch everywhere.** Every tool has a large, always-visible Back or Stop that exits instantly without penalty and logs the session as "exited early" (a neutral fact, not a failure). An exit within about 5 seconds is logged as "opened" instead, and leaving a content screen (lists, plans, notes) is never an early exit.
 
 ## Tech constraints
 

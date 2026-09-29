@@ -58,7 +58,6 @@ All art (icons, Po spritesheet) is generated in this repo by `tools-dev/`. Fonts
 
 ## Proposed
 - Optionally save the word chosen in Name it, so it can be attached to a session.
-- Let a plan start its linked tool straight away, skipping the start screen on breathing tools.
 
 ## Milestone 5
 - **When the row appears:** only after a tool ends by itself (its soft end, or Done). Never before or during a tool, never after Stop, and never once the user has left. It appears once per session, so nothing is asked twice. Content screens (lists, plans) show no row.
@@ -70,4 +69,25 @@ All art (icons, Po spritesheet) is generated in this repo by `tools-dev/`. Fonts
 - **Body tags** are off until switched on, in Settings or on the Tags screen. They get a "Not sure" too.
 - **No schema change,** so no migration was needed this milestone. The `tagsConfig` store already existed.
 
-- Proposed: a plain session history (tool and date only) so a "before" rating can be added later, and so single sessions can be tagged afterwards.
+- Proposed: a plain session history (tool and date only) so a "before" rating can be added later, and so single sessions can be tagged afterwards. (Owner: leave under Proposed for now.)
+
+## Owner decisions after Milestone 5
+Approved by the owner. These replace the earlier defaults where they differ.
+1. **Content tools are tagged and left out of the early-exit rate.** Sessions on lists, plans, notes, stims, name it, pros and cons and handoff carry `contentTool: true`. Leaving them is never an early exit. Older records are described by the same rule when read.
+2. **Left as is:** the optional "before" rating stays on breathing start screens only, and a session history screen stays under Proposed.
+3. **Exits under about 5 seconds are logged as "opened",** not as an early exit (`opened: true`, `exitedEarly: false`). Opened sessions still count as a use of the app, and they are left out of the early-exit rate. `CLAUDE.md` rule 13 and `SPEC.md` §7 and §9 now say so.
+4. **A plan starts its linked tool straight away,** skipping the start screen on breathing tools. The cool-water caution still shows once before first use.
+
+## Milestone 6
+- **Export is manual and stays on the device** unless the owner saves or shares a file. Phones use the share sheet when it can take a file, otherwise the browser downloads it. Nothing is uploaded.
+- **Appointment summary** (one A4 page) and **detailed report** (two A4 pages at most) are on-screen pages printed with the browser's Print, so there are no libraries. They were checked at a worst case of 26 weeks and 400 sessions: 1 page and 2 pages. Adding many chosen notes can make them longer.
+- **Uses by period** is one table of Now, Build and Library counts, so it covers both "Now-mode uses per week" and "Build and Now by week". Ranges over 26 weeks switch to months, capped at the latest 24.
+- **Early-exit rate** follows the definition now in `SPEC.md` §9: opened sessions and content tools are left out, and a tool needs at least 3 completed or early-exit sessions to appear.
+- **Recovery indicator** compares real moments in time, so a clock change cannot distort it. A Now session counts if it has an "after" rating. It looks for the earliest later session within 3 hours whose "before" rating is lower. The median is shown with how many were found, and the low-reliability line. It reads "Not available" when nothing qualifies.
+- **The fixed footer** is printed on both reports, and `npm run check` fails if it differs from `SPEC.md` §9.
+- **Notes and appointment points are off by default.** The owner chooses each note to include; unchosen notes stay out of the reports and the CSV.
+- **CSV:** one row per session, oldest first, a leading byte-order mark so spreadsheets read accents, and every text cell quoted. A cell starting with `=`, `+`, `-` or `@` gets a leading apostrophe so a spreadsheet never runs it as a formula. Extra columns `outcome`, `opened` and `contentTool` describe each session plainly.
+- **Backup** holds every store plus the small settings, whatever the date range. **Restore** shows what the file contains and asks for one more tap. It replaces what is on the device in a single transaction, so it all happens or none of it does. Wrong files and files from a newer version are refused and change nothing.
+- **Round trip tested:** export a backup, wipe every store and the settings, restore, then compare. All 9 stores and the settings came back identical (400 synthetic sessions), and new sessions afterwards get fresh ids.
+- **Tests in `npm run check`:** `scripts/test-export.mjs` checks the calculations with fake data, including days with no use, a clock-change case, the early-exit rules, CSV quoting and backup validation.
+- **Files are named** `pocket-po-sessions-DATE.csv` and `pocket-po-backup-DATE.json`, both already covered by `.gitignore`.

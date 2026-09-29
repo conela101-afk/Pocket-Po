@@ -74,6 +74,9 @@ const COLD = 'Cold on the face can slow your heart rate. Skip it if you have a h
 const CRISIS = "If you're in crisis or need someone now: Samaritans 116 123 (free, 24/7) · Pieta 1800 247 247 · Emergency 999 or 112";
 if (copy.safety.cold !== COLD) fail('copy.safety.cold differs from SPEC §11');
 if (copy.safety.crisis !== CRISIS) fail('copy.safety.crisis differs from SPEC §11');
+const FOOTER = read('SPEC.md').split('\n').find((l) => l.startsWith('> This summary is self-collected')).slice(2);
+if (copy.export.footer !== FOOTER) fail('copy.export.footer differs from SPEC §9');
+if ((read('js/export.js').match(/export\.footer/g) || []).length < 1) fail('export.js does not print the fixed footer');
 const screens = read('js/screens.js');
 if ((screens.match(/\$\{crisis\(\)\}/g) || []).length < 2) fail('crisis footer must render on Now and More');
 
@@ -100,7 +103,7 @@ if (/skipWaiting|clients\.claim/.test(sw.replace(/\/\/.*$/gm, ''))) fail('servic
 // Content rules: no pain or shock techniques, no condition names in user-facing copy
 const forbidden = ['snap', 'rubber band', 'sour', 'hold ice', 'holding ice', 'ice cube', 'feel something', 'fast ', 'fasting', 'adhd', 'autis', 'depress', 'anxiety', 'ptsd', 'borderline', 'bipolar', 'diagnos'];
 const scanText = [read('data/copy.json'), read('data/tools.json'), read('data/defaults.json'), read('data/tags.json')].join('\n').toLowerCase()
-  .replace(copy.safety.cold.toLowerCase(), '').replace(/it is not evidence of any diagnosis/g, '');
+  .replace(copy.safety.cold.toLowerCase(), '').replace(copy.export.footer.toLowerCase(), '');
 for (const w of forbidden) if (scanText.includes(w)) fail(`content rule: "${w.trim()}" found in user-facing data`);
 
 // Personal terms (local, untracked file)
@@ -112,6 +115,53 @@ if (existsSync('data/banned-personal-terms.txt')) {
     for (const term of terms) if (s.includes(term)) fail(`personal term matched in ${f}`);
   }
 }
+
+// ---- Cross-references between SPEC.md, CLAUDE.md, the data files and the repo ----
+const spec = read('SPEC.md'), claude = read('CLAUDE.md');
+
+// Every tool in tools.json is named in SPEC.md (Quiet is described in §3 without an id)
+for (const id of ids) if (id !== 'quiet' && !spec.includes('`' + id + '`')) fail(`SPEC.md: tool id \`${id}\` is not mentioned`);
+// Every id in SPEC.md §4 and §5 is a real tool
+const s45 = spec.slice(spec.indexOf('## 4.'), spec.indexOf('## 6.'));
+const NOT_TOOLS = new Set(['id', 'name', 'category', 'durationOptions', 'modes', 'prompt copy', 'caution', 'flags', 'optional', 'avoidsInteroception', 'now', 'build', 'library']);
+for (const m of s45.matchAll(/`([a-z0-9-]+)`/g)) if (!NOT_TOOLS.has(m[1]) && !ids.has(m[1])) fail(`SPEC.md §4-5 names \`${m[1]}\` but tools.json has no such tool`);
+// SPEC §5 Build list matches the Build tools
+const buildSpec = [...spec.slice(spec.indexOf('## 5.'), spec.indexOf('## 6.')).matchAll(/`(build-[a-z0-9-]+)`/g)].map((m) => m[1]);
+const buildTools = toolsData.tools.filter((x) => x.category === 'build').map((x) => x.id);
+if ([...buildSpec].sort().join() !== [...buildTools].sort().join()) fail(`Build tools differ: SPEC has ${buildSpec.length}, tools.json has ${buildTools.length}`);
+// Po states and frame counts match SPEC §10
+const sheet = json('assets/po/po-sheet.json');
+for (const m of spec.matchAll(/^\| `([a-z-]+)` \| (\d+) \|/gm)) {
+  const st = sheet.states[m[1]];
+  if (!st) fail(`po-sheet.json: state ${m[1]} from SPEC §10 is missing`);
+  else if (st.frames !== +m[2]) fail(`po-sheet.json: ${m[1]} has ${st.frames} frames, SPEC says ${m[2]}`);
+}
+// Default tags in tags.json match SPEC §7
+for (const [g, label] of [['trigger', 'Trigger'], ['context', 'Context']]) {
+  const line = spec.split('\n').find((l) => l.startsWith(`- **${label}:**`)) || '';
+  const want = line.replace(/^- \*\*\w+:\*\* /, '').split(' · ');
+  if (want.join('|') !== tags[g].tags.join('|')) fail(`tags.json ${g} tags differ from SPEC §7`);
+}
+// Time blocks in SPEC §7 exist in db.js
+for (const b of ['earlyMorning', 'morning', 'afternoon', 'evening', 'night']) if (!read('js/db.js').includes(`'${b}'`)) fail(`db.js: time block ${b} missing`);
+// Files named in the CLAUDE.md repo layout exist
+const layout = claude.match(/## Repo layout\s+```\n([\s\S]*?)```/)[1].split('\n').filter(Boolean);
+for (const line of layout) {
+  const dir = line.match(/^\/(\S+?)\/\s+(.+)$/);
+  if (dir) {
+    for (const f of dir[2].replace(/\(.*?\)/g, '').split(',').map((x) => x.trim()).filter(Boolean)) {
+      if (f.includes('*')) continue;
+      const full = f.includes('/') ? f : join(dir[1], f);
+      for (const name of full.split(/\s*\+\s*/)) if (!existsSync(name.split(' ')[0])) fail(`CLAUDE.md layout lists ${dir[1]}/${f} but it does not exist`);
+    }
+  } else for (const f of line.split(/\s{2,}/).map((x) => x.trim().replace(/^\//, '')).filter(Boolean)) if (!existsSync(f) && !existsSync(f.split(' ')[0])) fail(`CLAUDE.md layout lists ${f} but it does not exist`);
+}
+// Copy keys nobody uses (a note, not a failure)
+const allJs = walk('js').map(read).join('\n');
+const flat = (o, pre = '') => Object.entries(o).flatMap(([k, v]) => (v && typeof v === 'object' && !Array.isArray(v) ? flat(v, pre + k + '.') : [pre + k]));
+const dynamicPrefixes = ['export.', 'breathe.', 'safety.', 'more.items.', 'after.', 'play.', 'setup.', 'lists.', 'nameIt.', 'stims.', 'nav.'];
+const unused = flat(copy).filter((k) => !allJs.includes(`'${k}'`) && !dynamicPrefixes.some((p) => k.startsWith(p)) && !allJs.includes(k.split('.').slice(0, -1).join('.') + "'"));
+if (unused.length) console.log('note: copy keys not referenced in code: ' + unused.join(', '));
 
 if (errors.length) { console.error(errors.map((e) => '✗ ' + e).join('\n')); process.exit(1); }
 console.log(`check passed: ${ids.size} tools, ${refs.length} references, copy and safety text verified`);

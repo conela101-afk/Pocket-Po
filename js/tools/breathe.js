@@ -129,5 +129,6 @@ export function runBreathing(view, tool, mode, opener) {
     requestAnimationFrame(step);
   };
 
-  if (isNow) run(); else setup();
+  // Now mode and plans skip the start screen: the choice was already made.
+  if (isNow || opener === 'plan') run(); else setup();
 }

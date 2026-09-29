@@ -125,3 +125,33 @@ html[data-motion="reduce"] .bubble { bottom: auto; }
 .scale-ends { display: flex; justify-content: space-between; font-size: .85rem; margin-top: .25rem; }
 .afterrow .chips { margin-bottom: .5rem; }
 .afterrow h2 { margin-top: 1rem; }
+
+/* Reports: readable on screen, plain black on white when printed */
+.report { background: var(--surface); border: 1px solid var(--border); border-radius: 12px; padding: 1rem; margin-top: 1rem; }
+.report h1 { font-size: 1.3rem; } .report h2 { font-size: 1rem; margin: 1rem 0 .25rem; color: var(--text); } .report h3 { font-size: .9rem; margin: .5rem 0 .2rem; color: var(--muted); }
+.report table { width: 100%; border-collapse: collapse; margin-bottom: .25rem; }
+.report th, .report td { text-align: left; padding: .2rem .4rem; border-bottom: 1px solid var(--border); font-size: .9rem; font-weight: 400; }
+.report thead th { font-weight: 600; }
+.report .cols { display: grid; grid-template-columns: repeat(var(--n, 1), 1fr); gap: 0 1.2rem; }
+.report .footer { font-size: .8rem; color: var(--muted); border-top: 1px solid var(--border); padding-top: .5rem; margin-top: 1rem; }
+.report ul { margin: .25rem 0; padding-left: 1.2rem; }
+.report .cols > div { min-width: 0; }
+.report .periods td, .report .periods th { white-space: nowrap; padding-left: .25rem; padding-right: .25rem; }
+@media (max-width: 40rem) { .report .cols { grid-template-columns: 1fr; } }
+@media print {
+  @page { size: A4; margin: 12mm; }
+  html, body { background: #fff !important; color: #000 !important; }
+  body { padding: 0 !important; }
+  #view { max-width: none; padding: 0; }
+  .noprint { display: none !important; }
+  .report { background: #fff !important; color: #000 !important; border: 0; padding: 0; margin: 0; font-size: 9pt; line-height: 1.25; }
+  .report.detailed { font-size: 8.5pt; line-height: 1.2; }
+  .report h1 { font-size: 14pt; margin: 0 0 2mm; } .report h2 { font-size: 10pt; margin: 2mm 0 .5mm; color: #000; } .report h3 { color: #333; margin: 1mm 0; }
+  .report th, .report td { font-size: inherit; padding: .3mm 1.5mm; border-color: #bbb; }
+  .report .muted, .report .footer { color: #333 !important; }
+  .report .cols { grid-template-columns: repeat(var(--n, 1), 1fr) !important; gap: 0 4mm; }
+  .report section { break-inside: avoid; }
+  .report table { table-layout: auto; }
+  .report th { vertical-align: bottom; }
+  .report p { margin: 0 0 1mm; }
+}

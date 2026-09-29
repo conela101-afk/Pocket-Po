@@ -17,3 +17,6 @@ All 47 tools now have real screens. Adds if-then plans, parking lot, evidence ba
 
 ## 0.5.0 — Ratings and tags
 An optional, self-fading row after a tool (feeling scale, helped or not, tags, note), an optional "before" scale on breathing start screens, and a tag editor in More.
+
+## 0.6.0 — Export and backup
+Appointment summary, detailed report, CSV, and a JSON backup with restore. Quick exits now log as "opened", plans start their tool straight away, and content screens are left out of the early-exit rate.

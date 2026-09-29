@@ -6,6 +6,7 @@ import { route, start } from './router.js';
 import * as s from './screens.js';
 import { setup } from './setup.js';
 import { tagEditor } from './tags.js';
+import { exportScreen } from './export.js';
 
 const NAV = [['home', '/home'], ['now', '/now'], ['build', '/build'], ['library', '/library'], ['more', '/more']];
 
@@ -31,13 +32,14 @@ async function main() {
   route('safety', s.safety);
   route('setup', setup);
   route('tags', tagEditor);
+  route('export', exportScreen);
   let current = null;
   // First launch only: offer setup. A direct #/now (the shortcut) is never redirected.
   if (!getSetting('setupState') && ['', '#', '#/', '#/home'].includes(location.hash)) location.hash = '#/setup';
   await start((name) => {
     if (current) sessionStorage.setItem('prevRoute', current); else sessionStorage.removeItem('prevRoute');
     current = name;
-    renderNav(['settings', 'safety', 'setup', 'tags'].includes(name) ? 'more' : name);
+    renderNav(['settings', 'safety', 'setup', 'tags', 'export'].includes(name) ? 'more' : name);
     document.body.toggleAttribute('data-hide-fab', ['now', 'tool', 'setup'].includes(name));
     scrollTo(0, 0);
   });

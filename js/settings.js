@@ -33,3 +33,13 @@ export function applySettings() {
   root.dataset.po = s.poLook;
   if (s.highContrast) root.dataset.contrast = 'high'; else delete root.dataset.contrast;
 }
+
+/** For backups: the small settings as they are now. */
+export const exportSettings = () => ({ ...load() });
+
+/** For restore: replaces the small settings with those from a backup. */
+export function replaceSettings(obj) {
+  cache = { ...DEFAULTS, ...obj };
+  try { localStorage.setItem(KEY, JSON.stringify(cache)); } catch { /* still applied this session */ }
+  applySettings();
+}

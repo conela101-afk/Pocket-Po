@@ -113,7 +113,7 @@ Stored in IndexedDB.
 id, ts (ISO 8601 local), dow (0–6), block (earlyMorning|morning|afternoon|evening|night),
 mode (now|build|library), toolId, category,
 opener (nowButton|poSuggestion|browse|anchor|plan),
-durationSec, completed (bool), exitedEarly (bool),
+durationSec, completed (bool), exitedEarly (bool), opened (bool, exit under ~5 s), contentTool (bool),
 gapSincePrevNowSec (nullable), handoffPressed (bool),
 ratingBefore (1–5|null), ratingAfter (1–5|null),
 helped (helped|neutral|didnt|null),
@@ -165,6 +165,7 @@ Export is manual only, from More → Export. Choose a date range.
 
 **Definitions**
 - *Recovery indicator:* minutes from a Now-mode session start to the next session (any mode) within 3 hours whose "before" rating is lower than the Now session's rating. Null if unavailable. Marked low reliability.
+- *Early-exit rate:* early exits divided by sessions that were completed or exited early. Sessions marked `opened` and content tools (lists, plans, notes, stims, handoff) are left out.
 - *Day with no use:* calendar day with zero logged sessions.
 
 **Fixed footer (do not edit):**

@@ -1,0 +1,419 @@
+{
+ "app": {
+  "name": "Pocket Po",
+  "error": "That screen didn't load.",
+  "errorHome": "Back to Home"
+ },
+ "nav": {
+  "home": "Home",
+  "now": "Now",
+  "build": "Build",
+  "library": "Library",
+  "more": "More"
+ },
+ "home": {
+  "offer": "One option:",
+  "plans": "Your plans",
+  "noPlans": "Plans you write will wait here.",
+  "plansLink": "Your plans"
+ },
+ "now": {
+  "quiet": "Quiet",
+  "handoff": "Handoff",
+  "stop": "Stop",
+  "back": "Back"
+ },
+ "build": {
+  "intro": "If you like, a short practice for a calmer moment. Stop whenever."
+ },
+ "library": {
+  "search": "Search",
+  "favourites": "Favourites",
+  "recent": "Recently used",
+  "empty": "Nothing here yet."
+ },
+ "more": {
+  "title": "More",
+  "items": {
+   "setup": "Set up Now",
+   "notes": "Notes and evidence",
+   "plans": "If-then plans",
+   "parking": "Parking lot",
+   "prep": "Appointment prep",
+   "tags": "Tags",
+   "export": "Export",
+   "settings": "Settings",
+   "safety": "Safety info"
+  },
+  "soon": "Coming soon."
+ },
+ "tool": {
+  "stub": "This tool is on its way.",
+  "info": "i",
+  "cautionTitle": "Before you start",
+  "ok": "Got it",
+  "done": "I'm done",
+  "settled": "Po is settled. Stay as long as you like.",
+  "coolEnd": "That's the time. Stop whenever you like.",
+  "petHint": "Stroke Po slowly.",
+  "traceHint": "Follow the line with your finger.",
+  "pulse": "Tap each shoulder, one side and then the other."
+ },
+ "after": {
+  "lead": "If you like:",
+  "scale": "How is it now?",
+  "before": "Before you start, if you like: how is it now?",
+  "lo": "Quieter",
+  "hi": "Louder",
+  "helped": "Helped",
+  "neutral": "Neutral",
+  "didnt": "Didn't",
+  "note": "A note, if you like",
+  "groups": {
+   "trigger": "Trigger",
+   "context": "Context",
+   "body": "Body"
+  }
+ },
+ "tags": {
+  "title": "Tags",
+  "intro": "Rename, hide or add tags. The ones you use most move to the front.",
+  "notSure": "Not sure",
+  "hide": "Hide",
+  "show": "Show",
+  "add": "Add",
+  "newPlaceholder": "A new tag",
+  "bodyNote": "Off until you switch it on."
+ },
+ "settings": {
+  "afterRow": "Show the optional row after a tool",
+  "bodyTags": "Show body tags",
+  "title": "Settings",
+  "reduceMotion": "Reduce motion",
+  "sound": "Sound",
+  "vibration": "Vibration",
+  "dark": "Theme",
+  "darkAuto": "Auto",
+  "darkOn": "Dark",
+  "darkOff": "Light",
+  "textSize": "Text size",
+  "highContrast": "High contrast",
+  "autoStart": "Auto-start top Now card",
+  "handoffMessage": "Handoff message",
+  "comfort": "Shorter exhale, just go at your pace",
+  "sizeSmall": "Small",
+  "sizeMedium": "Medium",
+  "sizeLarge": "Large"
+ },
+ "safety": {
+  "cold": "Cold on the face can slow your heart rate. Skip it if you have a heart condition, take medication that affects heart rate, tend to faint, or have a skin condition on your face. Use cool water or a wrapped ice pack, never ice directly on skin, never hold your breath or submerge your head. If unsure, check with your GP. Stop if you feel dizzy or unwell.",
+  "crisis": "If you're in crisis or need someone now: Samaritans 116 123 (free, 24/7) · Pieta 1800 247 247 · Emergency 999 or 112"
+ },
+ "handoff": {
+  "copied": "Message copied"
+ },
+ "breathe": {
+  "length": "How long",
+  "noHolds": "No holds",
+  "comfort": "Shorter exhale, just go at your pace",
+  "start": "Start",
+  "settled": "Po is settled. Stay as long as you like.",
+  "in": "In",
+  "out": "Out",
+  "hold": "Hold",
+  "topup": "A little more",
+  "hum": "Hum out"
+ },
+ "setup": {
+  "title": "Set up Now",
+  "step": "Step",
+  "of": "of",
+  "skip": "Skip for now",
+  "next": "Next",
+  "back": "Back",
+  "done": "Done",
+  "s1": {
+   "title": "Your Now cards",
+   "intro": "If you like, pick up to three for the Now screen. You choose once, at a time that suits you, so Now never needs a decision.",
+   "limit": "Three chosen. Untick one to swap."
+  },
+  "s2": {
+   "title": "Quiet and handoff",
+   "quiet": "Add a Quiet card",
+   "quietHint": "The screen dims, Po sleeps and nothing is asked.",
+   "handoff": "Handoff message",
+   "handoffHint": "It opens in your messaging app, where you choose who receives it. No contact is stored here."
+  },
+  "s3": {
+   "title": "How Po looks",
+   "intro": "One option: check that Po is easy to see, then pick the look that suits you.",
+   "standard": "Standard",
+   "clear": "Clearer",
+   "soft": "Softer",
+   "light": "Light background",
+   "dark": "Dark background"
+  },
+  "s4": {
+   "title": "Movement and sound",
+   "intro": "Both can be changed any time in Settings."
+  }
+ },
+ "common": {
+  "next": "Next",
+  "done": "Done",
+  "add": "Add",
+  "save": "Save",
+  "remove": "Remove",
+  "back": "Back",
+  "new": "New",
+  "archive": "Archive",
+  "restore": "Restore",
+  "archived": "Archived"
+ },
+ "lists": {
+  "evidence-bank": {
+   "intro": "Things that went well, or that others have said about you. Add one whenever you like.",
+   "placeholder": "Something that went well",
+   "empty": "Nothing here yet. That's fine."
+  },
+  "parking-lot": {
+   "intro": "Write a thought that isn't settled and put it here. It will wait.",
+   "placeholder": "A thought to park",
+   "empty": "Nothing parked.",
+   "added": "Parked. It can wait."
+  },
+  "appointment-prep": {
+   "intro": "Points to raise at your next session. They stay here until you remove them.",
+   "placeholder": "A point to raise",
+   "empty": "No points yet.",
+   "toggle": "Raised"
+  },
+  "repair-note": {
+   "intro": "An optional note for another day.",
+   "placeholder": "A note for later",
+   "empty": "No notes yet."
+  }
+ },
+ "plans": {
+  "title": "If-then plans",
+  "intro": "If this happens, then I could do that.",
+  "if": "If",
+  "then": "then",
+  "ifPlaceholder": "this happens",
+  "thenPlaceholder": "I could...",
+  "tool": "Or start a tool",
+  "noTool": "No tool, just my words",
+  "empty": "No plans yet.",
+  "start": "Start"
+ },
+ "nameIt": {
+  "intro": "If you like, pick a word, or write your own. Nothing is saved.",
+  "own": "Or your own word",
+  "words": [
+   "calm",
+   "tense",
+   "tired",
+   "fuzzy",
+   "sad",
+   "cross",
+   "wired",
+   "flat",
+   "worried",
+   "overloaded",
+   "numb",
+   "okay",
+   "hopeful",
+   "restless"
+  ]
+ },
+ "pros": {
+  "pros": "Pros",
+  "cons": "Cons",
+  "intro": "Lay out both sides. Nothing here is saved.",
+  "placeholder": "One per line"
+ },
+ "stims": {
+  "intro": "Your own movements and textures that feel good.",
+  "placeholder": "Add your own",
+  "ideas": "Po's ideas",
+  "empty": "Nothing yet.",
+  "examples": [
+   "Rub a smooth stone or soft fabric",
+   "Rock gently",
+   "Hum a low note",
+   "Squeeze a soft toy",
+   "Tap a slow rhythm",
+   "Stretch and release your fingers"
+  ]
+ },
+ "handoffTool": {
+  "intro": "This sends your message through your messaging app. You choose who receives it."
+ },
+ "play": {
+  "bubbles": "Tap a bubble to pop it.",
+  "shapes": "Tap the place each shape belongs.",
+  "kaleido": "Watch the pattern turn. Tap for a new one.",
+  "circle": "Circle",
+  "square": "Square",
+  "triangle": "Triangle"
+ },
+ "checklist": {
+  "intro": "Take whichever you like."
+ },
+ "export": {
+  "title": "Export",
+  "intro": "Nothing leaves this device unless you choose to save or share a file.",
+  "range": "Date range",
+  "from": "From",
+  "to": "To",
+  "last4": "Last 4 weeks",
+  "last3m": "Last 3 months",
+  "all": "All time",
+  "include": "Include, if you like",
+  "prep": "My appointment points",
+  "notes": "Notes I choose",
+  "notesNone": "No notes in this range.",
+  "notesCsv": "Notes go into the CSV only if you choose them here.",
+  "makeSummary": "Appointment summary",
+  "makeDetailed": "Detailed report",
+  "makeCsv": "CSV of sessions",
+  "makeJson": "Backup file (JSON)",
+  "jsonNote": "A backup holds everything on this device, whatever the date range.",
+  "restore": "Restore from a backup",
+  "restoreIntro": "Choose a backup file you saved earlier.",
+  "restoreNote": "Restoring replaces what is on this device with the contents of the backup. If there is anything here you want to keep, save a backup first.",
+  "restoreGo": "Restore",
+  "cancel": "Cancel",
+  "restoreBad": "That file doesn't look like a Pocket Po backup. Nothing was changed.",
+  "restoreNewer": "That backup comes from a newer version of Pocket Po. Nothing was changed.",
+  "restoreFailed": "Something went wrong. Nothing was changed.",
+  "restoreDone": "Restored.",
+  "backupHas": "This backup has",
+  "from2": "saved",
+  "print": "Print or save as PDF",
+  "back": "Back",
+  "saved": "Saved",
+  "footer": "This summary is self-collected by the user from an app on their phone. It only records times the app was opened, so it is a minimum count, not a full picture. Ratings and tags are optional and self-reported; the user's awareness of internal body signals may be reduced, so ratings may under- or over-state distress. These figures are descriptive only and are not evidence of any diagnosis.",
+  "report": {
+   "summaryTitle": "Pocket Po summary",
+   "detailedTitle": "Pocket Po detailed report",
+   "range": "Range",
+   "prepared": "Prepared",
+   "secUse": "Use",
+   "daysUse": "Days with any use",
+   "daysNone": "Days with none",
+   "sessions": "Sessions logged",
+   "opened": "Opened and closed within seconds",
+   "handoff": "Handoff button presses",
+   "secPeriod": "Uses by period",
+   "week": "Week of",
+   "month": "Month",
+   "capped": "Showing the latest 24 months.",
+   "now": "Now",
+   "build": "Build",
+   "library": "Library",
+   "secBlocks": "Now-mode uses by time of day",
+   "blocks": {
+    "earlyMorning": "Early morning (05–09)",
+    "morning": "Morning (09–12)",
+    "afternoon": "Afternoon (12–17)",
+    "evening": "Evening (17–21)",
+    "night": "Night (21–05)"
+   },
+   "secTools": "Tools",
+   "mostUsed": "Used most",
+   "helpedMost": "Rated Helped most",
+   "earlyRate": "Highest early-exit rate",
+   "earlyNote": "Tools with at least 3 completed or early-exit sessions. Very quick exits and content screens are left out.",
+   "tool": "Tool",
+   "count": "Count",
+   "of": "of",
+   "early": "early exits",
+   "none": "None recorded.",
+   "secTags": "Tags (counts only)",
+   "triggers": "Trigger",
+   "context": "Context",
+   "body": "Body",
+   "secRecovery": "Recovery indicator",
+   "recoveryLine": "Median minutes from a Now session to the next session with a lower \"before\" rating, within 3 hours:",
+   "recoveryOf": "Found for {found} of {eligible} Now sessions with a rating.",
+   "recoveryNA": "Not available.",
+   "recoveryCaveat": "Low reliability: it depends on optional ratings and on when the app happened to be opened.",
+   "secPoints": "Points to raise",
+   "raised": "raised",
+   "secNotes": "Notes chosen for this report",
+   "secDow": "By day of week",
+   "dow": [
+    "Mon",
+    "Tue",
+    "Wed",
+    "Thu",
+    "Fri",
+    "Sat",
+    "Sun"
+   ],
+   "secRatings": "Ratings after a tool",
+   "ratingLabels": [
+    "1 (quieter)",
+    "2",
+    "3",
+    "4",
+    "5 (louder)"
+   ],
+   "secHelped": "Marked after a tool",
+   "helped": "Helped",
+   "neutral": "Neutral",
+   "didnt": "Didn't",
+   "secCategory": "By category",
+   "category": "Category",
+   "completed": "Completed",
+   "earlyCol": "Early exits",
+   "openedCol": "Opened",
+   "total": "Total",
+   "catNames": {
+    "breathing": "Breathing",
+    "body": "Body",
+    "ground": "Ground",
+    "absorb": "Absorb",
+    "thinking": "Thinking",
+    "dbt": "Skills",
+    "household": "Household",
+    "after": "After",
+    "meaning": "Meaning",
+    "build": "Build"
+   },
+   "months": [
+    "Jan",
+    "Feb",
+    "Mar",
+    "Apr",
+    "May",
+    "Jun",
+    "Jul",
+    "Aug",
+    "Sep",
+    "Oct",
+    "Nov",
+    "Dec"
+   ]
+  },
+  "storeNames": {
+   "sessions": "sessions",
+   "evidence": "evidence and notes",
+   "parkingLot": "parked thoughts",
+   "contingencies": "plans",
+   "prepPoints": "appointment points",
+   "favourites": "favourites",
+   "tagsConfig": "tag changes",
+   "settings": "settings",
+   "poState": "Po items"
+  }
+ },
+ "a11y": {
+  "po": "Po, an orange cat",
+  "favourite": "Favourite {name}",
+  "bubble": "Bubble",
+  "kaleido": "Kaleidoscope",
+  "scaleN": "{n} of 5"
+ }
+}

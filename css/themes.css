@@ -1,0 +1,30 @@
+/* Colour tokens. `npm run check` tests every pair here for contrast (scripts/contrast.mjs). */
+:root {
+  --bg: #f4ede2;
+  --surface: #ebe1d1;
+  --surface-2: #e2d6c2;
+  --text: #33302b;
+  --muted: #574f43;
+  --accent: #9c4f14;
+  --accent-text: #ffffff;
+  --border: #cfc2ab;
+  --field: #6e6452;
+  --focus: #2f6f8f;
+}
+@media (prefers-color-scheme: dark) {
+  :root:not([data-theme="light"]) {
+    --bg: #2e3440; --surface: #3a4150; --surface-2: #454d5e; --text: #e6e2d9;
+    --muted: #c9c4b6; --accent: #d98a45; --accent-text: #241a10; --border: #566072; --field: #9aa4b8; --focus: #8fc1d9;
+  }
+}
+:root[data-theme="dark"] {
+  --bg: #2e3440; --surface: #3a4150; --surface-2: #454d5e; --text: #e6e2d9;
+  --muted: #c9c4b6; --accent: #d98a45; --accent-text: #241a10; --border: #566072; --field: #9aa4b8; --focus: #8fc1d9;
+}
+
+/* High contrast: black or white text and edges. Each rule sets the whole set so order never matters. */
+:root[data-contrast="high"] { --text: #000000; --muted: #1c1c1c; --border: #000000; --field: #000000; }
+@media (prefers-color-scheme: dark) {
+  :root[data-contrast="high"]:not([data-theme="light"]) { --text: #ffffff; --muted: #f0f0f0; --border: #ffffff; --field: #ffffff; }
+}
+:root[data-contrast="high"][data-theme="dark"] { --text: #ffffff; --muted: #f0f0f0; --border: #ffffff; --field: #ffffff; }

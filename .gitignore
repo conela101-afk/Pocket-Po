@@ -1,0 +1,6 @@
+node_modules/
+*.csv
+*backup*.json
+exports/
+data/banned-personal-terms.txt
+.DS_Store

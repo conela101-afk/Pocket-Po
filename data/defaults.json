@@ -1,0 +1,66 @@
+{
+ "defaults": {
+  "now": [
+   "cold-face",
+   "ext-exhale",
+   "pet-po"
+  ],
+  "quiet": false,
+  "handoffMessage": "Need you to take over, no questions."
+ },
+ "homeRotation": {
+  "earlyMorning": [
+   "warmth",
+   "room-orient"
+  ],
+  "morning": [
+   "ext-exhale",
+   "sound-map"
+  ],
+  "afternoon": [
+   "describe-object",
+   "pattern-trace"
+  ],
+  "evening": [
+   "pet-po",
+   "warmth"
+  ],
+  "night": [
+   "paced-55",
+   "kaleidoscope"
+  ]
+ },
+ "nowCards": {
+  "cold-face": {
+   "icon": "❄",
+   "label": "Cool water, 30 seconds"
+  },
+  "ext-exhale": {
+   "icon": "〰",
+   "label": "Slow breath out"
+  },
+  "pet-po": {
+   "icon": "♡",
+   "label": "Pet Po"
+  },
+  "cold-hands": {
+   "icon": "❄",
+   "label": "Cool hands, 30 seconds"
+  },
+  "pattern-trace": {
+   "icon": "〰",
+   "label": "Trace a slow pattern"
+  },
+  "quiet": {
+   "icon": "☾",
+   "label": "Quiet"
+  }
+ },
+ "nowChoices": [
+  "cold-face",
+  "cold-hands",
+  "ext-exhale",
+  "pet-po",
+  "pattern-trace"
+ ]
+}

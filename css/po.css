@@ -1,0 +1,10 @@
+/* Placeholder Po (inline SVG). Real spritesheet arrives in Milestone 2. */
+.po { display: block; margin: .5rem auto 1rem; width: 128px; height: 128px; image-rendering: pixelated; }
+.po svg { width: 100%; height: 100%; shape-rendering: crispEdges; }
+.po.sm { width: 64px; height: 64px; }
+.po .eyes-open { display: inline; }
+.po .eyes-closed { display: none; }
+.po[data-state="sleep"] .eyes-open { display: none; }
+.po[data-state="sleep"] .eyes-closed { display: inline; }
+@keyframes po-bob { 0%, 100% { transform: translateY(0); } 50% { transform: translateY(-2px); } }
+.po[data-state="sleep"] svg { animation: po-bob 4s ease-in-out infinite; }

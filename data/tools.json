@@ -1,0 +1,730 @@
+{
+ "categories": [
+  {
+   "id": "breathing",
+   "name": "Breathing"
+  },
+  {
+   "id": "body",
+   "name": "Body"
+  },
+  {
+   "id": "ground",
+   "name": "Ground"
+  },
+  {
+   "id": "absorb",
+   "name": "Absorb"
+  },
+  {
+   "id": "thinking",
+   "name": "Thinking"
+  },
+  {
+   "id": "dbt",
+   "name": "Skills"
+  },
+  {
+   "id": "household",
+   "name": "Household"
+  },
+  {
+   "id": "after",
+   "name": "After"
+  },
+  {
+   "id": "meaning",
+   "name": "Meaning"
+  },
+  {
+   "id": "build",
+   "name": "Build"
+  }
+ ],
+ "tools": [
+  {
+   "id": "box",
+   "name": "Box breathing",
+   "category": "breathing",
+   "durationOptions": [
+    60,
+    180,
+    300
+   ],
+   "modes": [
+    "library",
+    "build"
+   ],
+   "prompt": "Breathe in 4, hold 4, out 4, hold 4. A no-holds version is one tap away.",
+   "flags": [
+    "hasHoldVariant"
+   ]
+  },
+  {
+   "id": "cyclic-sigh",
+   "name": "Cyclic sighing",
+   "category": "breathing",
+   "durationOptions": [
+    60,
+    180,
+    300
+   ],
+   "modes": [
+    "library",
+    "build"
+   ],
+   "prompt": "Two breaths in through the nose, one long slow breath out through the mouth.",
+   "flags": []
+  },
+  {
+   "id": "paced-55",
+   "name": "Slow paced breathing",
+   "category": "breathing",
+   "durationOptions": [
+    180,
+    300
+   ],
+   "modes": [
+    "library",
+    "build"
+   ],
+   "prompt": "In and out at a gentle pace with Po. About 5 to 6 seconds each way.",
+   "flags": []
+  },
+  {
+   "id": "ext-exhale",
+   "name": "Longer exhale",
+   "category": "breathing",
+   "durationOptions": [
+    60,
+    180,
+    300
+   ],
+   "modes": [
+    "now",
+    "library",
+    "build"
+   ],
+   "prompt": "Breathe in for 4, out for 6. Po breathes with you.",
+   "flags": []
+  },
+  {
+   "id": "hum-exhale",
+   "name": "Humming exhale",
+   "category": "breathing",
+   "durationOptions": [
+    60,
+    180
+   ],
+   "modes": [
+    "library",
+    "build"
+   ],
+   "prompt": "Breathe in for 4, then hum the breath out.",
+   "flags": []
+  },
+  {
+   "id": "pursed-lip",
+   "name": "Pursed-lip breath",
+   "category": "breathing",
+   "durationOptions": [
+    60,
+    180
+   ],
+   "modes": [
+    "library",
+    "build"
+   ],
+   "prompt": "In for 2, out for 4 through pursed lips.",
+   "flags": []
+  },
+  {
+   "id": "478",
+   "name": "4-7-8 (optional)",
+   "category": "breathing",
+   "durationOptions": [
+    60,
+    180
+   ],
+   "modes": [
+    "library"
+   ],
+   "prompt": "Involves a hold; skip if it feels uncomfortable.",
+   "flags": [
+    "optional",
+    "hasHold"
+   ]
+  },
+  {
+   "id": "cold-face",
+   "name": "Cold on your face",
+   "category": "body",
+   "durationOptions": [
+    30
+   ],
+   "modes": [
+    "now",
+    "library"
+   ],
+   "prompt": "Cool water on your face for about 30 seconds.",
+   "caution": "cold",
+   "flags": [
+    "cold"
+   ]
+  },
+  {
+   "id": "cold-hands",
+   "name": "Cold hands",
+   "category": "body",
+   "durationOptions": [
+    30,
+    60
+   ],
+   "modes": [
+    "now",
+    "library"
+   ],
+   "prompt": "Hold your hands under the cool tap, or hold something cold.",
+   "caution": "cold",
+   "flags": [
+    "cold"
+   ]
+  },
+  {
+   "id": "warmth",
+   "name": "Warmth",
+   "category": "body",
+   "durationOptions": [
+    60,
+    180
+   ],
+   "modes": [
+    "now",
+    "library"
+   ],
+   "prompt": "A warm drink, or warm hands around something warm.",
+   "flags": []
+  },
+  {
+   "id": "wall-push",
+   "name": "Wall push",
+   "category": "body",
+   "durationOptions": [
+    30,
+    60
+   ],
+   "modes": [
+    "now",
+    "library"
+   ],
+   "prompt": "Press your hands into a wall and push, then let go.",
+   "flags": []
+  },
+  {
+   "id": "self-squeeze",
+   "name": "Self-squeeze",
+   "category": "body",
+   "durationOptions": [
+    30,
+    60
+   ],
+   "modes": [
+    "now",
+    "library"
+   ],
+   "prompt": "Wrap your arms around yourself and squeeze gently.",
+   "flags": []
+  },
+  {
+   "id": "tense-release",
+   "name": "Tense and release",
+   "category": "body",
+   "durationOptions": [
+    180,
+    300
+   ],
+   "modes": [
+    "library"
+   ],
+   "prompt": "Follow the prompts through each muscle group, tense then let go.",
+   "flags": [
+    "externalPrompts"
+   ]
+  },
+  {
+   "id": "shake-out",
+   "name": "Shake it out",
+   "category": "body",
+   "durationOptions": [
+    30,
+    60
+   ],
+   "modes": [
+    "now",
+    "library"
+   ],
+   "prompt": "Shake your hands, arms and legs loose.",
+   "flags": []
+  },
+  {
+   "id": "butterfly-hug",
+   "name": "Butterfly hug",
+   "category": "body",
+   "durationOptions": [
+    60,
+    180
+   ],
+   "modes": [
+    "now",
+    "library"
+   ],
+   "prompt": "Cross your arms and tap each shoulder, one side then the other.",
+   "flags": []
+  },
+  {
+   "id": "stim-menu",
+   "name": "Your stims",
+   "category": "body",
+   "durationOptions": [
+    60,
+    180
+   ],
+   "modes": [
+    "now",
+    "library"
+   ],
+   "prompt": "Your own list of movements and textures that feel good.",
+   "flags": [
+    "userList"
+   ]
+  },
+  {
+   "id": "room-orient",
+   "name": "Look around the room",
+   "category": "ground",
+   "durationOptions": [
+    60,
+    180
+   ],
+   "modes": [
+    "now",
+    "library"
+   ],
+   "prompt": "Slowly look around and name the colours you see.",
+   "flags": [
+    "avoidsInteroception"
+   ]
+  },
+  {
+   "id": "sound-map",
+   "name": "Sound map",
+   "category": "ground",
+   "durationOptions": [
+    60,
+    180
+   ],
+   "modes": [
+    "now",
+    "library"
+   ],
+   "prompt": "Listen and notice the sounds near, then far.",
+   "flags": [
+    "avoidsInteroception"
+   ]
+  },
+  {
+   "id": "describe-object",
+   "name": "Describe an object",
+   "category": "ground",
+   "durationOptions": [
+    60,
+    180
+   ],
+   "modes": [
+    "now",
+    "library"
+   ],
+   "prompt": "Pick something nearby and describe it in detail.",
+   "flags": [
+    "avoidsInteroception"
+   ]
+  },
+  {
+   "id": "54321",
+   "name": "5-4-3-2-1",
+   "category": "ground",
+   "durationOptions": [
+    180
+   ],
+   "modes": [
+    "library"
+   ],
+   "prompt": "Five things you see, four you touch, three you hear, two you smell, one you taste.",
+   "flags": [
+    "optional"
+   ]
+  },
+  {
+   "id": "pet-po",
+   "name": "Pet Po",
+   "category": "absorb",
+   "durationOptions": [
+    180
+   ],
+   "modes": [
+    "now",
+    "library"
+   ],
+   "prompt": "Stroke Po slowly. Po purrs.",
+   "flags": [
+    "softEnd"
+   ]
+  },
+  {
+   "id": "pattern-trace",
+   "name": "Pattern trace",
+   "category": "absorb",
+   "durationOptions": [
+    180
+   ],
+   "modes": [
+    "now",
+    "library"
+   ],
+   "prompt": "Trace the pattern slowly with your finger.",
+   "flags": [
+    "softEnd"
+   ]
+  },
+  {
+   "id": "bubble-pop",
+   "name": "Bubble pop",
+   "category": "absorb",
+   "durationOptions": [
+    180
+   ],
+   "modes": [
+    "library"
+   ],
+   "prompt": "Pop bubbles as they drift by.",
+   "flags": [
+    "softEnd"
+   ]
+  },
+  {
+   "id": "sort-shapes",
+   "name": "Sort shapes",
+   "category": "absorb",
+   "durationOptions": [
+    180
+   ],
+   "modes": [
+    "library"
+   ],
+   "prompt": "Sort the shapes, no score.",
+   "flags": [
+    "softEnd"
+   ]
+  },
+  {
+   "id": "kaleidoscope",
+   "name": "Kaleidoscope",
+   "category": "absorb",
+   "durationOptions": [
+    180
+   ],
+   "modes": [
+    "library"
+   ],
+   "prompt": "Watch the pattern turn slowly.",
+   "flags": [
+    "softEnd"
+   ]
+  },
+  {
+   "id": "name-it",
+   "name": "Name it",
+   "category": "thinking",
+   "durationOptions": [
+    60
+   ],
+   "modes": [
+    "library",
+    "build"
+   ],
+   "prompt": "Pick one word for how it feels, from a short list or your own.",
+   "flags": []
+  },
+  {
+   "id": "defusion",
+   "name": "Having the thought",
+   "category": "thinking",
+   "durationOptions": [
+    60,
+    180
+   ],
+   "modes": [
+    "library"
+   ],
+   "prompt": "Try: \"I'm having the thought that...\"",
+   "flags": []
+  },
+  {
+   "id": "demand-choice",
+   "name": "Demand and choice",
+   "category": "thinking",
+   "durationOptions": [
+    180
+   ],
+   "modes": [
+    "library"
+   ],
+   "prompt": "What's the demand here, and what part of it is yours to choose?",
+   "flags": []
+  },
+  {
+   "id": "contingency-builder",
+   "name": "If-then plan",
+   "category": "thinking",
+   "durationOptions": [
+    180
+   ],
+   "modes": [
+    "library",
+    "build"
+   ],
+   "prompt": "If this happens, then I could do that.",
+   "flags": []
+  },
+  {
+   "id": "parking-lot",
+   "name": "Parking lot",
+   "category": "thinking",
+   "durationOptions": [
+    60,
+    180
+   ],
+   "modes": [
+    "library"
+   ],
+   "prompt": "Write down an unresolved thought and put it away for now.",
+   "flags": []
+  },
+  {
+   "id": "tipp",
+   "name": "TIPP",
+   "category": "dbt",
+   "durationOptions": [
+    180
+   ],
+   "modes": [
+    "library"
+   ],
+   "prompt": "Cool your body, move a little, slow your breath. Pick what suits you.",
+   "flags": []
+  },
+  {
+   "id": "self-soothe-senses",
+   "name": "Soothe the senses",
+   "category": "dbt",
+   "durationOptions": [
+    180
+   ],
+   "modes": [
+    "library"
+   ],
+   "prompt": "One thing to see, hear, smell, taste and touch that feels kind.",
+   "flags": []
+  },
+  {
+   "id": "radical-acceptance",
+   "name": "Radical acceptance",
+   "category": "dbt",
+   "durationOptions": [
+    180
+   ],
+   "modes": [
+    "library"
+   ],
+   "prompt": "This is how things are right now. You could rest with that.",
+   "flags": []
+  },
+  {
+   "id": "pros-cons",
+   "name": "Pros and cons",
+   "category": "dbt",
+   "durationOptions": [
+    180
+   ],
+   "modes": [
+    "library"
+   ],
+   "prompt": "Lay out both sides of an urge, then choose in your own time.",
+   "flags": []
+  },
+  {
+   "id": "handoff",
+   "name": "Handoff",
+   "category": "household",
+   "durationOptions": [
+    30
+   ],
+   "modes": [
+    "library"
+   ],
+   "prompt": "Send a pre-written message to someone who can take over.",
+   "flags": []
+  },
+  {
+   "id": "caregiver-reset",
+   "name": "Caregiver reset",
+   "category": "household",
+   "durationOptions": [
+    300
+   ],
+   "modes": [
+    "library"
+   ],
+   "prompt": "Child safe in a set spot, water, breathe, cold, return. Five minutes.",
+   "flags": []
+  },
+  {
+   "id": "after-checklist",
+   "name": "After an episode",
+   "category": "after",
+   "durationOptions": [
+    180
+   ],
+   "modes": [
+    "library"
+   ],
+   "prompt": "Water, food, quiet, wash your face. Take whichever you like.",
+   "flags": []
+  },
+  {
+   "id": "repair-note",
+   "name": "Note for later",
+   "category": "after",
+   "durationOptions": [
+    60
+   ],
+   "modes": [
+    "library"
+   ],
+   "prompt": "Leave a note for another day, if you like.",
+   "flags": []
+  },
+  {
+   "id": "evidence-bank",
+   "name": "Evidence bank",
+   "category": "meaning",
+   "durationOptions": [
+    60,
+    180
+   ],
+   "modes": [
+    "library"
+   ],
+   "prompt": "Things that went well, or that others have said about you.",
+   "flags": []
+  },
+  {
+   "id": "appointment-prep",
+   "name": "Appointment prep",
+   "category": "meaning",
+   "durationOptions": [
+    60,
+    180
+   ],
+   "modes": [
+    "library"
+   ],
+   "prompt": "Jot points to raise at your next session.",
+   "flags": []
+  },
+  {
+   "id": "build-cold-low",
+   "name": "Cool exposure",
+   "category": "build",
+   "durationOptions": [
+    15,
+    30
+   ],
+   "modes": [
+    "build"
+   ],
+   "prompt": "Cool, not painful, for 15 to 30 seconds.",
+   "caution": "cold",
+   "flags": [
+    "cold"
+   ]
+  },
+  {
+   "id": "build-exhale-3",
+   "name": "Three-minute longer exhale",
+   "category": "build",
+   "durationOptions": [
+    180
+   ],
+   "modes": [
+    "build"
+   ],
+   "prompt": "Three minutes of breathing out longer than in.",
+   "flags": []
+  },
+  {
+   "id": "build-urge-surf",
+   "name": "Urge surfing",
+   "category": "build",
+   "durationOptions": [
+    120
+   ],
+   "modes": [
+    "build"
+   ],
+   "prompt": "Sit with a mild urge for two minutes before acting. Po sits alongside.",
+   "flags": []
+  },
+  {
+   "id": "build-anchor-3",
+   "name": "Three-minute anchor",
+   "category": "build",
+   "durationOptions": [
+    180
+   ],
+   "modes": [
+    "build"
+   ],
+   "prompt": "Rest your attention on sounds, textures or one thing you can see.",
+   "flags": [
+    "avoidsInteroception"
+   ]
+  },
+  {
+   "id": "build-contingency",
+   "name": "Write one if-then plan",
+   "category": "build",
+   "durationOptions": [
+    180
+   ],
+   "modes": [
+    "build"
+   ],
+   "prompt": "One if-then plan, in your words.",
+   "flags": []
+  },
+  {
+   "id": "build-name-it",
+   "name": "Label one feeling",
+   "category": "build",
+   "durationOptions": [
+    60
+   ],
+   "modes": [
+    "build"
+   ],
+   "prompt": "Give one feeling a name.",
+   "flags": []
+  }
+ ]
+}

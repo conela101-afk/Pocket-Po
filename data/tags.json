@@ -1,0 +1,33 @@
+{
+ "trigger": {
+  "label": "Trigger",
+  "tags": [
+   "Demand or pressure",
+   "Not knowing what's expected",
+   "Sensory",
+   "Tired or hungry",
+   "People or social",
+   "Something unresolved",
+   "Not sure"
+  ]
+ },
+ "context": {
+  "label": "Context",
+  "tags": [
+   "Home",
+   "Out",
+   "With family",
+   "Alone"
+  ]
+ },
+ "body": {
+  "label": "Body",
+  "hiddenByDefault": true,
+  "tags": [
+   "Slept badly",
+   "Hungry",
+   "In pain",
+   "Cycle-related"
+  ]
+ }
+}

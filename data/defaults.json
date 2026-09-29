@@ -1,0 +1,47 @@
+{
+ "defaults": {
+  "now": [
+   "cold-face",
+   "ext-exhale",
+   "pet-po"
+  ],
+  "quiet": false,
+  "handoffMessage": "Need you to take over, no questions."
+ },
+ "homeRotation": {
+  "earlyMorning": [
+   "warmth",
+   "room-orient"
+  ],
+  "morning": [
+   "ext-exhale",
+   "sound-map"
+  ],
+  "afternoon": [
+   "describe-object",
+   "pattern-trace"
+  ],
+  "evening": [
+   "pet-po",
+   "warmth"
+  ],
+  "night": [
+   "paced-55",
+   "kaleidoscope"
+  ]
+ },
+ "nowCards": {
+  "cold-face": {
+   "icon": "\u2744",
+   "label": "Cold water, 30 seconds"
+  },
+  "ext-exhale": {
+   "icon": "\u3030",
+   "label": "Slow breath out"
+  },
+  "pet-po": {
+   "icon": "\u2661",
+   "label": "Pet Po"
+  }
+ }
+}

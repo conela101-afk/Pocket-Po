@@ -1,0 +1,74 @@
+{
+ "app": {
+  "name": "Pocket Po"
+ },
+ "nav": {
+  "home": "Home",
+  "now": "Now",
+  "build": "Build",
+  "library": "Library",
+  "more": "More"
+ },
+ "home": {
+  "offer": "One option:",
+  "plans": "Your plans",
+  "noPlans": "Plans you write will wait here."
+ },
+ "now": {
+  "quiet": "Quiet",
+  "handoff": "Handoff",
+  "stop": "Stop",
+  "back": "Back"
+ },
+ "build": {
+  "intro": "If you like, a short practice for a calmer moment. Stop whenever."
+ },
+ "library": {
+  "search": "Search",
+  "favourites": "Favourites",
+  "recent": "Recently used",
+  "empty": "Nothing here yet."
+ },
+ "more": {
+  "title": "More",
+  "items": {
+   "notes": "Notes and evidence",
+   "plans": "If-then plans",
+   "parking": "Parking lot",
+   "prep": "Appointment prep",
+   "tags": "Tags",
+   "export": "Export",
+   "settings": "Settings",
+   "safety": "Safety info"
+  },
+  "soon": "Coming soon."
+ },
+ "tool": {
+  "stub": "This tool is on its way.",
+  "info": "i",
+  "cautionTitle": "Before you start",
+  "ok": "Got it",
+  "done": "I'm done"
+ },
+ "settings": {
+  "title": "Settings",
+  "reduceMotion": "Reduce motion",
+  "sound": "Sound",
+  "vibration": "Vibration",
+  "dark": "Theme",
+  "darkAuto": "Auto",
+  "darkOn": "Dark",
+  "darkOff": "Light",
+  "textSize": "Text size",
+  "highContrast": "High contrast",
+  "autoStart": "Auto-start top Now card",
+  "handoffMessage": "Handoff message"
+ },
+ "safety": {
+  "cold": "Cold on the face can slow your heart rate. Skip it if you have a heart condition, take medication that affects heart rate, tend to faint, or have a skin condition on your face. Use cool water or a wrapped ice pack, never ice directly on skin, never hold your breath or submerge your head. If unsure, check with your GP. Stop if you feel dizzy or unwell.",
+  "crisis": "If you're in crisis or need someone now: Samaritans 116 123 (free, 24/7) · Pieta 1800 247 247 · Emergency 999 or 112"
+ },
+ "handoff": {
+  "copied": "Message copied"
+ }
+}
